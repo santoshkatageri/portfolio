@@ -24,9 +24,9 @@
 }
 
 .identityMark {
-  font-family: var(--font-mono);
-  font-size: var(--step--2);
-  letter-spacing: 0.24em;
+  font-size: var(--step-0);
+  font-weight: 560;
+  letter-spacing: -0.018em;
   color: var(--text);
 }
 

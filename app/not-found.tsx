@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { content } from '@/content/site';
 import styles from './not-found.module.css';
 
 export const metadata: Metadata = { title: 'Page not found' };
@@ -14,7 +13,7 @@ export default function NotFound() {
           The link may be out of date, or the page has not been built yet.
         </p>
         <a className="btn btn--primary" href="/">
-          Back to {content.profile.brand}
+          Back home
           <span className="btn__arrow" aria-hidden="true">→</span>
         </a>
       </div>

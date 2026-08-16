@@ -48,7 +48,8 @@ export default function HomePage() {
       </a>
 
       <SiteHeader
-        brand={profile.brand}
+        name={profile.name}
+        positioning={profile.positioning}
         navItems={NAV}
         ctaLabel="Let's connect"
         ctaHref="#contact"

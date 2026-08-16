@@ -36,7 +36,7 @@ export const content: SiteContent = {
       'I have worked across OCI, AWS and GCP, contribute to Terraform provider development, and spend a fair amount of time on the unglamorous parts of running a service: patching, on-call, health reviews and answering customer questions in office hours.',
       'SPKATAGERI is where the rest of it goes — the experiments, the tools I am testing, and the notes from figuring out how systems actually behave.',
     ],
-    siteUrl: 'https://spkatageri.com',
+    siteUrl: 'https://santoshkatageri.com',
   },
 
   experience: [
