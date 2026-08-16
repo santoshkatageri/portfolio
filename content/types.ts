@@ -25,8 +25,15 @@ export type Profile = {
   location?: string;
   /** About section paragraphs. Empty array renders an empty state. */
   about: string[];
-  /** Short, factual credibility points shown under the hero actions */
-  facts?: string[];
+  /** Compact credibility strip under the hero actions. Facts only. */
+  credibility?: {
+    /** One line, e.g. "8+ years building and operating cloud infrastructure" */
+    statement: string;
+    /** Employers, in order */
+    companies: string[];
+    /** Cloud platforms */
+    platforms: string[];
+  };
   /** Canonical site URL used for metadata */
   siteUrl: string;
 };

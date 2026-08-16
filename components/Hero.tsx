@@ -10,20 +10,22 @@ type HeroProps = {
 };
 
 export default function Hero({ profile, primary, secondary }: HeroProps) {
+  const { credibility } = profile;
+
   return (
     <section className={styles.hero} id="top" aria-labelledby="hero-title">
       <div className="shell">
         <div className={styles.grid}>
           <div className={styles.copy}>
             <Reveal className={styles.identity}>
-              <span className={styles.identityMark}>{profile.name}</span>
+              <span className={styles.identityMark}>{profile.brand}</span>
               <span className={styles.identityDot} aria-hidden="true" />
               <span className={styles.identityLine}>{profile.positioning}</span>
             </Reveal>
 
             <Reveal delay={80}>
               <h1 className={styles.title} id="hero-title">
-                I build, understand, and <em>experiment with</em> technology.
+                I build with AI and <em>engineer the systems underneath.</em>
               </h1>
             </Reveal>
 
@@ -43,13 +45,14 @@ export default function Hero({ profile, primary, secondary }: HeroProps) {
               </a>
             </Reveal>
 
-            {profile.facts?.length ? (
-              <Reveal delay={320}>
-                <ul className={styles.facts}>
-                  {profile.facts.map((fact) => (
-                    <li key={fact}>{fact}</li>
-                  ))}
-                </ul>
+            {credibility ? (
+              <Reveal delay={320} className={styles.credibility}>
+                <p className={styles.credStatement}>{credibility.statement}</p>
+                <p className={styles.credMeta}>
+                  <span>{credibility.companies.join(' · ')}</span>
+                  <span className={styles.credDivider} aria-hidden="true" />
+                  <span>{credibility.platforms.join(' · ')}</span>
+                </p>
               </Reveal>
             ) : null}
           </div>

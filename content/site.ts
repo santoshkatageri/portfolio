@@ -23,13 +23,13 @@ export const content: SiteContent = {
     philosophy: 'Build it. Understand it. Experiment with it. Share it.',
     headline: 'I build, understand, and experiment with technology.',
     intro:
-      'Cloud and DevOps engineer with 8+ years across infrastructure automation, cloud platforms and operations. Currently a Senior Member of Technical Staff at Oracle, working on the OCI metadata management service — provisioning, multi-region delivery and the tooling that keeps it reliable.',
+      'I build software, automate infrastructure, experiment with AI, and explore how modern systems work — from cloud platforms and DevOps to AI-powered applications.',
     currentRole: 'Senior Member of Technical Staff — Cloud & DevOps, Oracle',
-    facts: [
-      '8+ years in DevOps, cloud engineering & operations',
-      'Oracle · Zynga · Mindtree',
-      'OCI · AWS · GCP',
-    ],
+    credibility: {
+      statement: '8+ years building and operating cloud infrastructure',
+      companies: ['Oracle', 'Zynga', 'Mindtree'],
+      platforms: ['OCI', 'AWS', 'GCP'],
+    },
     about: [
       'I work on the infrastructure side of software: provisioning it, automating it, and keeping services healthy once they are live. Today that means Oracle, where I am a Senior Member of Technical Staff on the OCI metadata management service — a service that helps data professionals discover data and support data governance.',
       'Across eight-plus years I have moved between DevOps consulting, cloud engineering for game teams, and running a cloud service at scale. The through-line is automation: replacing manual, repeated work with something reproducible. Owning our region bootstrap is the clearest example — it went from a three-day exercise to six hours, and then to 120 minutes using an in-house touchless bootstrap tool.',

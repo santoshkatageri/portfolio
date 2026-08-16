@@ -60,7 +60,7 @@ export default function HomePage() {
         <Hero
           profile={profile}
           primary={{ label: 'Explore my work', href: '#work' }}
-          secondary={{ label: 'About me', href: '#about' }}
+          secondary={{ label: "See what I'm building", href: '#lab' }}
         />
 
         {/* ── Work ─────────────────────────────────────────────────────── */}
