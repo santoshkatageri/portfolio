@@ -16,35 +16,40 @@
 }
 
 .identity {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.55rem 0.85rem;
-  margin-bottom: clamp(1.4rem, 3vw, 2rem);
+  display: grid;
+  gap: 0.4rem;
+  justify-items: start;
+  margin-bottom: clamp(1.5rem, 3vw, 2.1rem);
 }
 
-.identityMark {
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  font-weight: 500;
-  letter-spacing: 0.22em;
+.identityName {
+  font-size: var(--step-1);
+  font-weight: 560;
+  letter-spacing: -0.022em;
+  line-height: 1.2;
   color: var(--text);
 }
 
 .identityDot {
-  width: 4px;
-  height: 4px;
+  flex: none;
+  width: 5px;
+  height: 5px;
   border-radius: 999px;
   background: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-wash);
 }
 
 .identityLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.6rem;
   font-family: var(--font-mono);
   font-size: var(--step--2);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-faint);
+  line-height: 1.5;
+  color: var(--text-dim);
 }
 
 .title {

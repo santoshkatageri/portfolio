@@ -18,9 +18,11 @@ export default function Hero({ profile, primary, secondary }: HeroProps) {
         <div className={styles.grid}>
           <div className={styles.copy}>
             <Reveal className={styles.identity}>
-              <span className={styles.identityMark}>{profile.brand}</span>
-              <span className={styles.identityDot} aria-hidden="true" />
-              <span className={styles.identityLine}>{profile.positioning}</span>
+              <p className={styles.identityName}>{profile.name}</p>
+              <p className={styles.identityLine}>
+                <span className={styles.identityDot} aria-hidden="true" />
+                {profile.positioning}
+              </p>
             </Reveal>
 
             <Reveal delay={80}>

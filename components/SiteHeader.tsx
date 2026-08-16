@@ -7,7 +7,6 @@ export type NavItem = { href: string; label: string };
 
 type SiteHeaderProps = {
   name: string;
-  positioning: string;
   navItems: NavItem[];
   ctaLabel: string;
   ctaHref: string;
@@ -15,7 +14,6 @@ type SiteHeaderProps = {
 
 export default function SiteHeader({
   name,
-  positioning,
   navItems,
   ctaLabel,
   ctaHref,
@@ -79,10 +77,7 @@ export default function SiteHeader({
             <span className={styles.mark} aria-hidden="true">
               SK
             </span>
-            <span className={styles.lockup}>
-              <span className={styles.wordmark}>{name}</span>
-              <span className={styles.tagline}>{positioning}</span>
-            </span>
+            <span className={styles.wordmark}>{name}</span>
             <span className="sr-only">— home</span>
           </a>
 

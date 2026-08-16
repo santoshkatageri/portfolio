@@ -7,7 +7,7 @@ import type { SiteContent } from './types';
  * Update this file to update the website. No presentation code needs to change.
  *
  * FACTUAL RULE: only add entries supported by the résumé or by information
- * Santosh has explicitly supplied. Leave arrays empty rather than guessing —
+ * Santhosh has explicitly supplied. Leave arrays empty rather than guessing —
  * every section has a designed empty state.
  *
  * DELIBERATELY OMITTED from this public site (see README):
@@ -18,7 +18,7 @@ import type { SiteContent } from './types';
 export const content: SiteContent = {
   profile: {
     brand: 'SPKATAGERI',
-    name: 'Santosh Katageri',
+    name: 'Santhosh Katageri',
     positioning: 'AI · DevOps · Software · Systems',
     philosophy: 'Build it. Understand it. Experiment with it. Share it.',
     headline: 'I build, understand, and experiment with technology.',
@@ -26,7 +26,7 @@ export const content: SiteContent = {
       'I build software, automate infrastructure, experiment with AI, and explore how modern systems work — from cloud platforms and DevOps to AI-powered applications.',
     currentRole: 'Senior Member of Technical Staff — Cloud & DevOps, Oracle',
     credibility: {
-      statement: '8+ years building and operating cloud infrastructure',
+      statement: '9+ years building and operating cloud infrastructure',
       companies: ['Oracle', 'Zynga', 'Mindtree'],
       platforms: ['OCI', 'AWS', 'GCP'],
     },

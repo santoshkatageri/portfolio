@@ -12,7 +12,7 @@ import './globals.css';
 const { profile } = content;
 
 const description =
-  'Portfolio of Santosh Katageri — Senior Member of Technical Staff for Cloud and DevOps at Oracle. Infrastructure automation across OCI, AWS and GCP, selected projects, and an ongoing lab of experiments and notes.';
+  'Portfolio of Santhosh Katageri — Senior Member of Technical Staff for Cloud and DevOps at Oracle. Infrastructure automation across OCI, AWS and GCP, selected projects, and an ongoing lab of experiments and notes.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
