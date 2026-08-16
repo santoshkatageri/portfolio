@@ -183,7 +183,7 @@ export default function HomePage() {
           <div className="shell">
             <SectionHeading
               eyebrow="05 — Lab"
-              title="SPKATAGERI Lab"
+              title={`${profile.brand} Tech Lab`}
               id="lab-title"
               intro="A working space for experiments: AI tooling, automation, DevOps trials, system design studies and small products. Published as they become real."
             />

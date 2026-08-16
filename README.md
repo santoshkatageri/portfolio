@@ -31,7 +31,7 @@ The shape of every field is documented in [`content/types.ts`](content/types.ts)
 | `certifications[]` | About sidebar             | block hidden                      |
 | `links[]`          | Contact + Footer          | "Public profiles coming soon."    |
 | `recognitions[]`   | About sidebar             | block hidden                      |
-| `experiments[]`    | SPKATAGERI Lab            | falls back to `labTracks[]` cards |
+| `experiments[]`    | SPKATAGERI Tech Lab       | falls back to `labTracks[]` cards |
 | `labTracks[]`      | Lab placeholder cards     | —                                 |
 | `articles[]`       | Notes & insights          | honest empty state                |
 

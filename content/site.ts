@@ -242,7 +242,7 @@ export const content: SiteContent = {
     },
   ],
 
-  /** ── SPKATAGERI Lab: real experiments, once they exist ──────────────────── */
+  /** ── SPKATAGERI Tech Lab: real experiments, once they exist ──────────────────── */
   experiments: [],
 
   /**
