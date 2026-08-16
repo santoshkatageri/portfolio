@@ -25,6 +25,8 @@ export type Profile = {
   location?: string;
   /** About section paragraphs. Empty array renders an empty state. */
   about: string[];
+  /** Short, factual credibility points shown under the hero actions */
+  facts?: string[];
   /** Canonical site URL used for metadata */
   siteUrl: string;
 };
@@ -88,6 +90,13 @@ export type Education = {
   detail?: string;
 };
 
+export type Recognition = {
+  id: string;
+  name: string;
+  issuer?: string;
+  year?: string;
+};
+
 export type Certification = {
   id: string;
   name: string;
@@ -141,6 +150,7 @@ export type SiteContent = {
   skills: SkillGroup[];
   education: Education[];
   certifications: Certification[];
+  recognitions: Recognition[];
   links: ProfileLink[];
   experiments: Experiment[];
   labTracks: LabTrack[];

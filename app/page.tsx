@@ -32,12 +32,14 @@ export default function HomePage() {
     education,
     certifications,
     links,
+    recognitions,
     experiments,
     labTracks,
     articles,
   } = content;
 
   const featuredCount = projects.filter((project) => project.featured).length;
+  const firstName = profile.name.split(' ')[0];
 
   return (
     <>
@@ -67,13 +69,20 @@ export default function HomePage() {
               eyebrow="01 — Work"
               title="Things I've built"
               id="work-title"
-              intro="Selected projects across software, infrastructure and automation. Each one starts as a problem worth solving and ends as something running."
+              intro="Automation and cloud infrastructure work from my roles at Oracle, Zynga and Mindtree — each with the problem behind it, what was built, and what measurably changed."
             />
 
             {projects.length ? (
               <div
                 className={styles.projects}
-                data-columns={projects.length - featuredCount > 1 ? '2' : '1'}
+                data-columns={
+                  (projects.length - featuredCount) % 3 === 0 &&
+                  projects.length - featuredCount >= 3
+                    ? '3'
+                    : projects.length - featuredCount > 1
+                      ? '2'
+                      : '1'
+                }
               >
                 {projects.map((project) => (
                   <ProjectCard key={project.id} project={project} />
@@ -101,7 +110,7 @@ export default function HomePage() {
               eyebrow="02 — Career"
               title="Engineering experience"
               id="experience-title"
-              intro="Roles, scope and the technical work behind them."
+              intro="Eight-plus years across DevOps consulting, cloud engineering and running a cloud service at scale."
             />
 
             {experience.length ? (
@@ -238,7 +247,7 @@ export default function HomePage() {
           <div className="shell">
             <SectionHeading
               eyebrow="07 — Profile"
-              title="About Santhosh"
+              title={`About ${firstName}`}
               id="about-title"
             />
 
@@ -252,25 +261,17 @@ export default function HomePage() {
               <Reveal className={styles.aboutAside} delay={80}>
                 <div className={styles.asideBlock}>
                   <p className={styles.asideTitle}>Focus</p>
-                  <p className={styles.asideItem}>
+                  <span className={styles.asideItem}>
                     <strong>{profile.positioning}</strong>
-                  </p>
-                  {profile.currentRole ? (
-                    <p className={styles.asideItem}>
-                      <span>{profile.currentRole}</span>
-                    </p>
-                  ) : null}
-                  {profile.location ? (
-                    <p className={styles.asideItem}>
-                      <span>{profile.location}</span>
-                    </p>
-                  ) : null}
+                    {profile.currentRole ? <span>{profile.currentRole}</span> : null}
+                    {profile.location ? <span>{profile.location}</span> : null}
+                  </span>
                 </div>
 
-                <div className={styles.asideBlock}>
-                  <p className={styles.asideTitle}>Education</p>
-                  {education.length ? (
-                    education.map((item) => (
+                {education.length ? (
+                  <div className={styles.asideBlock}>
+                    <p className={styles.asideTitle}>Education</p>
+                    {education.map((item) => (
                       <span className={styles.asideItem} key={item.id}>
                         <strong>{item.qualification}</strong>
                         <span>
@@ -278,27 +279,39 @@ export default function HomePage() {
                           {item.period ? ` · ${item.period}` : ''}
                         </span>
                       </span>
-                    ))
-                  ) : (
-                    <p className={styles.asidePending}>To be added.</p>
-                  )}
-                </div>
+                    ))}
+                  </div>
+                ) : null}
 
-                <div className={styles.asideBlock}>
-                  <p className={styles.asideTitle}>Certifications</p>
-                  {certifications.length ? (
-                    certifications.map((item) => (
+                {certifications.length ? (
+                  <div className={styles.asideBlock}>
+                    <p className={styles.asideTitle}>Certifications</p>
+                    {certifications.map((item) => (
                       <span className={styles.asideItem} key={item.id}>
                         <strong>{item.name}</strong>
                         <span>
                           {[item.issuer, item.year].filter(Boolean).join(' · ')}
                         </span>
                       </span>
-                    ))
-                  ) : (
-                    <p className={styles.asidePending}>To be added.</p>
-                  )}
-                </div>
+                    ))}
+                  </div>
+                ) : null}
+
+                {recognitions.length ? (
+                  <div className={styles.asideBlock}>
+                    <p className={styles.asideTitle}>Recognition</p>
+                    {recognitions.map((item) => (
+                      <span className={styles.asideItem} key={item.id}>
+                        <strong>{item.name}</strong>
+                        {item.issuer || item.year ? (
+                          <span>
+                            {[item.issuer, item.year].filter(Boolean).join(' · ')}
+                          </span>
+                        ) : null}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
               </Reveal>
             </div>
           </div>
@@ -312,8 +325,8 @@ export default function HomePage() {
             <div className={styles.contact}>
               <Reveal className={styles.contactCopy}>
                 <p className={styles.contactBody}>
-                  Open to conversations about engineering work, AI and automation
-                  projects, or anything being built in the Lab.
+                  Open to conversations about cloud and DevOps engineering,
+                  automation work, or anything being built in the Lab.
                 </p>
                 <p className={styles.contactBody}>
                   {profile.brand} · {profile.positioning}

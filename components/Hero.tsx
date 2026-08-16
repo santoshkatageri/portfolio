@@ -42,6 +42,16 @@ export default function Hero({ profile, primary, secondary }: HeroProps) {
                 {secondary.label}
               </a>
             </Reveal>
+
+            {profile.facts?.length ? (
+              <Reveal delay={320}>
+                <ul className={styles.facts}>
+                  {profile.facts.map((fact) => (
+                    <li key={fact}>{fact}</li>
+                  ))}
+                </ul>
+              </Reveal>
+            ) : null}
           </div>
 
           <Reveal delay={140} className={styles.visual}>

@@ -1,7 +1,8 @@
 .timeline {
+  --tl-gap: clamp(1.8rem, 3.4vw, 2.8rem);
   position: relative;
   display: grid;
-  gap: clamp(1.6rem, 3.4vw, 2.6rem);
+  gap: var(--tl-gap);
 }
 
 .item {
@@ -16,7 +17,7 @@
   position: absolute;
   left: 3.5px;
   top: 0.65rem;
-  bottom: -1.9rem;
+  bottom: calc(var(--tl-gap) * -1);
   width: 1px;
   background: linear-gradient(
     to bottom,

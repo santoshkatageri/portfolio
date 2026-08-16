@@ -27,9 +27,10 @@ The shape of every field is documented in [`content/types.ts`](content/types.ts)
 | `experience[]`     | Engineering experience    | honest empty state                |
 | `projects[]`       | Things I've built         | honest empty state                |
 | `skills[]`         | What I work with          | honest empty state                |
-| `education[]`      | About sidebar             | "To be added."                    |
-| `certifications[]` | About sidebar             | "To be added."                    |
+| `education[]`      | About sidebar             | block hidden                      |
+| `certifications[]` | About sidebar             | block hidden                      |
 | `links[]`          | Contact + Footer          | "Public profiles coming soon."    |
+| `recognitions[]`   | About sidebar             | block hidden                      |
 | `experiments[]`    | SPKATAGERI Lab            | falls back to `labTracks[]` cards |
 | `labTracks[]`      | Lab placeholder cards     | —                                 |
 | `articles[]`       | Notes & insights          | honest empty state                |
@@ -66,6 +67,21 @@ projects: [
 
 Project artwork is generated as abstract SVG diagrams (`ProjectVisual`) — there
 are no fake product screenshots. Drop in real images later if you have them.
+
+## Current content status
+
+Populated from the résumé: `profile`, `experience[]` (Oracle, Zynga, Mindtree),
+`projects[]` (four, all derived from résumé work), `skills[]`, `education[]`,
+`recognitions[]`, `links[]` (LinkedIn, GitHub).
+
+Still empty by design: `certifications[]` (none in the résumé), `experiments[]`
+and `articles[]` (nothing published yet — the Lab shows planned tracks and Notes
+shows an empty state).
+
+**Deliberately excluded from this public site:** personal phone number,
+referees' names/emails/phone numbers, and any employer-internal or proprietary
+detail. Public email is not published because no public address was supplied —
+add one to `links[]` as `{ kind: 'email', href: 'mailto:…' }` when ready.
 
 ## Structure
 
