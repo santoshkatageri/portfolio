@@ -1,0 +1,198 @@
+/* Section-level layout for the homepage */
+
+.projects {
+  display: grid;
+  gap: clamp(1.1rem, 2.4vw, 1.6rem);
+}
+
+@media (min-width: 900px) {
+  .projects[data-columns='2'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .projects[data-columns='2'] > :global(article[data-featured='true']) {
+    grid-column: 1 / -1;
+  }
+}
+
+.skills {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.25rem);
+}
+
+@media (min-width: 700px) {
+  .skills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1080px) {
+  .skills {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.lab {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.25rem);
+}
+
+@media (min-width: 700px) {
+  .lab {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1080px) {
+  .lab {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.labIntro {
+  margin-bottom: clamp(1.4rem, 3vw, 2rem);
+}
+
+.philosophyBanner {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(2.2rem, 5vw, 3.2rem);
+}
+
+.philosophyHeading {
+  max-width: 20ch;
+  font-size: var(--step-4);
+}
+
+.philosophyHeading span {
+  color: var(--text-faint);
+  display: inline-block;
+}
+
+.philosophyBody {
+  max-width: 62ch;
+  color: var(--text-muted);
+}
+
+/* ── About ─────────────────────────────────────────────────────────────── */
+
+.about {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+
+.aboutCopy {
+  display: grid;
+  gap: 1.1rem;
+  max-width: 62ch;
+}
+
+.aboutCopy p {
+  color: var(--text-muted);
+  font-size: var(--step-0);
+  line-height: 1.75;
+}
+
+.aboutCopy p:first-child {
+  font-size: var(--step-1);
+  color: var(--text);
+  line-height: 1.6;
+  letter-spacing: -0.014em;
+}
+
+.aboutAside {
+  display: grid;
+  gap: 1.4rem;
+  align-content: start;
+  padding: clamp(1.2rem, 2.6vw, 1.7rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--bg-panel);
+  height: fit-content;
+}
+
+.asideBlock {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.asideTitle {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.asideItem {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.asideItem strong {
+  font-weight: 550;
+  color: var(--text);
+  font-size: var(--step-0);
+}
+
+.asideItem span {
+  color: var(--text-dim);
+  font-size: var(--step--1);
+}
+
+.asidePending {
+  color: var(--text-faint);
+  font-size: var(--step--1);
+}
+
+@media (min-width: 980px) {
+  .about {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  }
+}
+
+/* ── Notes ─────────────────────────────────────────────────────────────── */
+
+.notes {
+  display: grid;
+}
+
+/* ── Contact ───────────────────────────────────────────────────────────── */
+
+.contact {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+
+.contactCopy {
+  display: grid;
+  gap: 1.2rem;
+  max-width: 46ch;
+}
+
+.contactHeading {
+  font-size: var(--step-4);
+  max-width: 16ch;
+}
+
+.contactBody {
+  color: var(--text-muted);
+}
+
+.contactLinks {
+  display: grid;
+  gap: 0.7rem;
+}
+
+@media (min-width: 640px) {
+  .contactLinks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  .contact {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}

@@ -1,0 +1,222 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 90;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
+    backdrop-filter 0.3s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+.header[data-stuck='true'] {
+  background: rgba(6, 7, 10, 0.72);
+  backdrop-filter: saturate(140%) blur(14px);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  border-bottom-color: var(--line);
+}
+
+.header[data-open='true'] {
+  background: var(--ink-1000);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 68px;
+}
+
+/* ── Wordmark ───────────────────────────────────────────────────────────── */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+  background: var(--bg-panel-strong);
+  color: var(--accent-bright);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+.brand:hover .mark {
+  border-color: var(--accent-line);
+  color: #fff;
+}
+
+.wordmark {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ── Desktop nav ────────────────────────────────────────────────────────── */
+
+.nav {
+  display: none;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.link {
+  position: relative;
+  padding: 0.5rem 0.78rem;
+  border-radius: 999px;
+  font-size: var(--step--1);
+  color: var(--text-dim);
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.link:hover {
+  color: var(--text);
+  background: var(--bg-panel-strong);
+}
+
+.link[aria-current='true'] {
+  color: var(--text);
+}
+
+.link[aria-current='true']::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.16rem;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cta {
+  display: none;
+  padding: 0.52rem 1rem;
+  font-size: var(--step--1);
+}
+
+/* ── Mobile toggle ──────────────────────────────────────────────────────── */
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.85rem 0.5rem 0.95rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: var(--step--1);
+  color: var(--text);
+}
+
+.bars {
+  display: grid;
+  gap: 4px;
+  width: 15px;
+}
+
+.bars span {
+  display: block;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.28s var(--ease), opacity 0.2s var(--ease);
+}
+
+.toggle[aria-expanded='true'] .bars span:nth-child(1) {
+  transform: translateY(5.5px) rotate(45deg);
+}
+
+.toggle[aria-expanded='true'] .bars span:nth-child(2) {
+  opacity: 0;
+}
+
+.toggle[aria-expanded='true'] .bars span:nth-child(3) {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+/* ── Mobile panel ───────────────────────────────────────────────────────── */
+
+.panel {
+  overflow: hidden;
+  max-height: 0;
+  border-top: 1px solid transparent;
+  transition: max-height 0.42s var(--ease-out), border-color 0.3s var(--ease);
+}
+
+.panel[data-open='true'] {
+  max-height: min(80vh, 640px);
+  overflow-y: auto;
+  border-top-color: var(--line);
+}
+
+.panelInner {
+  display: grid;
+  gap: 0.1rem;
+  padding: 1rem 0 1.6rem;
+}
+
+.panelLink {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  padding: 0.85rem 0.2rem;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--step-1);
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.panelIndex {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--text-faint);
+}
+
+.panelCta {
+  margin-top: 1.2rem;
+  justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .nav {
+    display: flex;
+  }
+
+  .cta {
+    display: inline-flex;
+  }
+
+  .toggle {
+    display: none;
+  }
+
+  .panel {
+    display: none;
+  }
+
+  .bar {
+    height: 76px;
+  }
+}

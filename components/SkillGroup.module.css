@@ -1,0 +1,44 @@
+.group {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  padding: clamp(1.2rem, 2.4vw, 1.6rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-panel);
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.group:hover {
+  border-color: var(--line-strong);
+  background: var(--bg-panel-strong);
+}
+
+.head {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.index {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  color: var(--accent-bright);
+}
+
+.title {
+  font-size: var(--step-1);
+  letter-spacing: -0.02em;
+}
+
+.note {
+  font-size: var(--step--1);
+  color: var(--text-dim);
+  max-width: 44ch;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}

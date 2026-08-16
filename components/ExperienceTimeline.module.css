@@ -1,0 +1,133 @@
+.timeline {
+  position: relative;
+  display: grid;
+  gap: clamp(1.6rem, 3.4vw, 2.6rem);
+}
+
+.item {
+  position: relative;
+  display: grid;
+  gap: 0.9rem;
+  padding-left: 1.6rem;
+}
+
+.item::before {
+  content: '';
+  position: absolute;
+  left: 3.5px;
+  top: 0.65rem;
+  bottom: -1.9rem;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--line-strong),
+    rgba(255, 255, 255, 0.04)
+  );
+}
+
+.item:last-child::before {
+  display: none;
+}
+
+.item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--ink-900);
+  border: 1px solid var(--line-strong);
+}
+
+.item[data-current='true']::after {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-wash);
+}
+
+.head {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.period {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.current {
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent-line);
+  background: var(--accent-wash);
+  color: var(--accent-bright);
+  letter-spacing: 0.1em;
+}
+
+.title {
+  font-size: var(--step-2);
+  letter-spacing: -0.024em;
+}
+
+.company {
+  color: var(--text-muted);
+  font-size: var(--step-0);
+}
+
+.company span {
+  color: var(--text-faint);
+}
+
+.summary {
+  max-width: 68ch;
+  color: var(--text-muted);
+}
+
+.highlights {
+  display: grid;
+  gap: 0.55rem;
+  max-width: 72ch;
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--text-muted);
+  font-size: var(--step-0);
+}
+
+.highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 6px;
+  height: 1px;
+  background: var(--accent);
+}
+
+@media (min-width: 900px) {
+  .item {
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: 1.2rem clamp(1.5rem, 4vw, 3rem);
+    padding-left: 2rem;
+  }
+
+  .head {
+    align-content: start;
+  }
+
+  .detail {
+    display: grid;
+    gap: 1rem;
+  }
+}

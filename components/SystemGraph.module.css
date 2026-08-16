@@ -1,0 +1,134 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 520 / 380;
+  color: var(--text-dim);
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.edge {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.14);
+  stroke-width: 1;
+}
+
+.edgeGlow {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-dasharray: 26 240;
+  opacity: 0.85;
+  animation: flow 7s linear infinite;
+}
+
+@keyframes flow {
+  from {
+    stroke-dashoffset: 266;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.halo {
+  fill: var(--accent);
+  opacity: 0.08;
+  animation: breathe 6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.06;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.14;
+    transform: scale(1.12);
+  }
+}
+
+.nodeDot {
+  fill: var(--ink-950);
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-width: 1;
+}
+
+.nodeCore {
+  fill: var(--accent-bright);
+}
+
+.nodeLabel {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  fill: var(--text-dim);
+}
+
+.centerRing {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-dasharray: 3 7;
+  animation: spin 60s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.labelShort {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .nodeLabel {
+    font-size: 15px;
+    letter-spacing: 0.1em;
+  }
+
+  .labelShort {
+    display: block;
+  }
+
+  .nodeLabel[data-has-short='true'][data-variant='full'] {
+    display: none;
+  }
+
+  .centerLabel {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+  }
+}
+
+.centerLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  fill: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edgeGlow {
+    animation: none;
+    opacity: 0.5;
+    stroke-dasharray: none;
+  }
+
+  .halo,
+  .centerRing {
+    animation: none;
+  }
+}

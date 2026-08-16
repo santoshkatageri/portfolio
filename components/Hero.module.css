@@ -1,0 +1,131 @@
+.hero {
+  position: relative;
+  padding-top: clamp(7.5rem, 16vw, 11rem);
+  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  align-items: center;
+}
+
+.copy {
+  max-width: 44ch;
+}
+
+.identity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.85rem;
+  margin-bottom: clamp(1.4rem, 3vw, 2rem);
+}
+
+.identityMark {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.24em;
+  color: var(--text);
+}
+
+.identityDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-wash);
+}
+
+.identityLine {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.title {
+  margin-bottom: clamp(1.2rem, 2.6vw, 1.8rem);
+  font-weight: 540;
+  letter-spacing: -0.042em;
+  line-height: 1.02;
+}
+
+.title em {
+  font-style: normal;
+  color: var(--text-muted);
+}
+
+.intro {
+  max-width: 52ch;
+  margin-bottom: clamp(1.9rem, 4vw, 2.6rem);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.visual {
+  position: relative;
+  margin-inline: auto;
+  width: min(100%, 460px);
+}
+
+.visual::before {
+  content: '';
+  position: absolute;
+  inset: -8% -4%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(77, 141, 255, 0.14),
+    transparent 65%
+  );
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.philosophy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.1rem;
+  margin-top: clamp(3rem, 7vw, 5rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.philosophyLabel {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.philosophyText {
+  font-size: var(--step-0);
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .visual {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .copy {
+    max-width: 46ch;
+  }
+}
