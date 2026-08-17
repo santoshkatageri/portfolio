@@ -69,7 +69,7 @@ export default function HomePage() {
               eyebrow="01 — Work"
               title="Things I've built"
               id="work-title"
-              intro="Automation and cloud infrastructure work from my roles at Oracle, Zynga and Mindtree — each with the problem behind it, what was built, and what measurably changed."
+              intro="Automation and cloud infrastructure work from my roles at Oracle, Zynga and Mindtree — each with the problem behind it, what was built, and what changed."
             />
 
             {projects.length ? (
@@ -110,7 +110,7 @@ export default function HomePage() {
               eyebrow="02 — Career"
               title="Engineering experience"
               id="experience-title"
-              intro="Eight-plus years across DevOps consulting, cloud engineering and running a cloud service at scale."
+              intro="Nine-plus years across DevOps consulting, cloud engineering and running a cloud service at scale."
             />
 
             {experience.length ? (
@@ -325,8 +325,8 @@ export default function HomePage() {
             <div className={styles.contact}>
               <Reveal className={styles.contactCopy}>
                 <p className={styles.contactBody}>
-                  Open to conversations about cloud and DevOps engineering,
-                  automation work, or anything being built in the Lab.
+                  Open to conversations about DevOps, cloud engineering,
+                  automation, AI, or anything being built in the Lab.
                 </p>
                 <p className={styles.contactBody}>
                   {profile.brand} · {profile.positioning}

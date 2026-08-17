@@ -1,7 +1,7 @@
 /**
  * Content model for the SPKATAGERI portfolio.
  *
- * Everything the site displays about Santhosh Katageri is typed here and
+ * Everything the site displays about Santosh Katageri is typed here and
  * supplied from `content/site.ts`. No component should hard-code biography,
  * employment, project, or skill facts.
  */
@@ -27,7 +27,7 @@ export type Profile = {
   about: string[];
   /** Compact credibility strip under the hero actions. Facts only. */
   credibility?: {
-    /** One line, e.g. "8+ years building and operating cloud infrastructure" */
+    /** One line, e.g. "9+ years building and operating cloud infrastructure" */
     statement: string;
     /** Employers, in order */
     companies: string[];
@@ -128,7 +128,8 @@ export type Experiment = {
   id: string;
   title: string;
   summary: string;
-  status: 'exploring' | 'building' | 'shipped';
+  /** Never mark planned work as published. */
+  status: 'planned' | 'in-progress' | 'published';
   tags: string[];
   href?: string;
 };

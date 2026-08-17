@@ -1,4 +1,4 @@
-# SPKATAGERI — Santhosh Katageri
+# SPKATAGERI — Santosh Katageri
 
 Personal technology portfolio: **AI · DevOps · Software · Systems**.
 Built with Next.js (App Router), TypeScript and plain CSS Modules — no UI kit,
@@ -37,7 +37,7 @@ The shape of every field is documented in [`content/types.ts`](content/types.ts)
 
 ### Content rules baked into this repo
 
-* Only add entries supported by the résumé or by information Santhosh supplies.
+* Only add entries supported by the résumé or by information Santosh supplies.
 * Never invent metrics, clients, dates, certifications or links.
 * Leave an array empty rather than guessing — every section has a designed
   empty state, so an incomplete site still looks finished.

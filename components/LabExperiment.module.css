@@ -53,10 +53,20 @@
   background: var(--ink-400);
 }
 
-.status[data-status='building'] .dot,
-.status[data-status='shipped'] .dot {
+.status[data-status='in-progress'] .dot {
   background: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-wash);
+}
+
+.status[data-status='published'] .dot {
+  background: var(--accent-bright);
+  box-shadow: 0 0 0 3px var(--accent-wash);
+}
+
+/* Planned keeps the neutral dot — planned must never read as done. */
+.status[data-status='planned'] .dot {
+  background: var(--ink-400);
+  box-shadow: none;
 }
 
 .title {

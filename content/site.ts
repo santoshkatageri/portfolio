@@ -7,7 +7,7 @@ import type { SiteContent } from './types';
  * Update this file to update the website. No presentation code needs to change.
  *
  * FACTUAL RULE: only add entries supported by the résumé or by information
- * Santhosh has explicitly supplied. Leave arrays empty rather than guessing —
+ * Santosh has explicitly supplied. Leave arrays empty rather than guessing —
  * every section has a designed empty state.
  *
  * DELIBERATELY OMITTED from this public site (see README):
@@ -18,7 +18,7 @@ import type { SiteContent } from './types';
 export const content: SiteContent = {
   profile: {
     brand: 'SPKATAGERI',
-    name: 'Santhosh Katageri',
+    name: 'Santosh Katageri',
     positioning: 'AI · DevOps · Software · Systems',
     philosophy: 'Build it. Understand it. Experiment with it. Share it.',
     headline: 'I build, understand, and experiment with technology.',
@@ -32,7 +32,7 @@ export const content: SiteContent = {
     },
     about: [
       'I work on the infrastructure side of software: provisioning it, automating it, and keeping services healthy once they are live. Today that means Oracle, where I am a Senior Member of Technical Staff on the OCI metadata management service — a service that helps data professionals discover data and support data governance.',
-      'Across eight-plus years I have moved between DevOps consulting, cloud engineering for game teams, and running a cloud service at scale. The through-line is automation: replacing manual, repeated work with something reproducible. Owning our region bootstrap is the clearest example — it went from a three-day exercise to six hours, and then to 120 minutes using an in-house touchless bootstrap tool.',
+      'Across nine-plus years I have moved between DevOps consulting, cloud engineering for game teams, and running a cloud service at scale. The through-line is automation: replacing manual, repeated work with something reproducible. Owning our region bootstrap is the clearest example — it went from a three-day exercise to six hours, and then to 120 minutes using an in-house touchless bootstrap tool.',
       'I have worked across OCI, AWS and GCP, contribute to Terraform provider development, and spend a fair amount of time on the unglamorous parts of running a service: patching, on-call, health reviews and answering customer questions in office hours.',
       'SPKATAGERI is where the rest of it goes — the experiments, the tools I am testing, and the notes from figuring out how systems actually behave.',
     ],

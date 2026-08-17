@@ -3,9 +3,9 @@ import Reveal from './Reveal';
 import styles from './LabExperiment.module.css';
 
 const STATUS_LABEL: Record<Experiment['status'], string> = {
-  exploring: 'Exploring',
-  building: 'Building',
-  shipped: 'Shipped',
+  planned: 'Planned',
+  'in-progress': 'In progress',
+  published: 'Published',
 };
 
 export function LabExperimentCard({

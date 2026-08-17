@@ -55,7 +55,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               aria-controls={detailId}
               onClick={() => setOpen((value) => !value)}
             >
-              {open ? 'Hide case study' : 'Read case study'}
+              {open ? 'Hide project details' : 'View project details'}
               <span className={styles.caret} aria-hidden="true">
                 ↓
               </span>
