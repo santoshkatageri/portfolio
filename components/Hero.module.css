@@ -1,0 +1,193 @@
+.hero {
+  position: relative;
+  padding-top: clamp(7.5rem, 16vw, 11rem);
+  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  align-items: center;
+}
+
+.copy {
+  max-width: 44ch;
+}
+
+.identity {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: start;
+  margin-bottom: clamp(1.5rem, 3vw, 2.1rem);
+}
+
+.identityName {
+  font-size: var(--step-1);
+  font-weight: 560;
+  letter-spacing: -0.022em;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.identityDot {
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-wash);
+}
+
+.identityLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.title {
+  max-width: 18ch;
+  font-size: clamp(2.1rem, 1.28rem + 3.5vw, 4.3rem);
+  margin-bottom: clamp(1.2rem, 2.6vw, 1.8rem);
+  font-weight: 540;
+  letter-spacing: -0.042em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.title em {
+  font-style: normal;
+  color: var(--text-muted);
+}
+
+.intro {
+  max-width: 52ch;
+  margin-bottom: clamp(1.9rem, 4vw, 2.6rem);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+@media (max-width: 400px) {
+  .actions {
+    display: grid;
+  }
+
+  .actions > :global(.btn) {
+    justify-content: center;
+  }
+}
+
+.visual {
+  position: relative;
+  margin-inline: auto;
+  width: min(100%, 460px);
+}
+
+.visual::before {
+  content: '';
+  position: absolute;
+  inset: -8% -4%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(77, 141, 255, 0.14),
+    transparent 65%
+  );
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.credibility {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: clamp(1.9rem, 4vw, 2.5rem);
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--line-strong);
+}
+
+.credStatement {
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  letter-spacing: -0.008em;
+}
+
+.credMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.credDivider {
+  width: 14px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+@media (max-width: 400px) {
+  .credDivider {
+    display: none;
+  }
+
+  .credMeta {
+    display: grid;
+    gap: 0.25rem;
+  }
+}
+
+.philosophy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.1rem;
+  margin-top: clamp(3rem, 7vw, 5rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.philosophyLabel {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.philosophyText {
+  font-size: var(--step-0);
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .visual {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .copy {
+    max-width: 46ch;
+  }
+}

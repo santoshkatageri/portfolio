@@ -1,0 +1,39 @@
+.card {
+  display: grid;
+  gap: 0.7rem;
+  padding: clamp(1.1rem, 2.2vw, 1.5rem) 0;
+  border-top: 1px solid var(--line);
+}
+
+.card:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.title {
+  font-size: var(--step-2);
+  letter-spacing: -0.024em;
+}
+
+.titleLink {
+  transition: color 0.22s var(--ease);
+}
+
+.titleLink:hover {
+  color: var(--accent-bright);
+}
+
+.excerpt {
+  max-width: 66ch;
+  color: var(--text-muted);
+}

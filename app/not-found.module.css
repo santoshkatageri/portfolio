@@ -1,0 +1,22 @@
+.wrap {
+  display: grid;
+  align-items: center;
+  min-height: 100svh;
+  padding-block: 4rem;
+}
+
+.wrap > :global(.shell) {
+  display: grid;
+  gap: 1.1rem;
+  justify-items: start;
+}
+
+.title {
+  font-size: var(--step-4);
+  max-width: 18ch;
+}
+
+.body {
+  color: var(--text-muted);
+  max-width: 46ch;
+}

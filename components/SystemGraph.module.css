@@ -1,0 +1,236 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  color: var(--text-dim);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 520 / 380;
+  overflow: visible;
+}
+
+/* ── Interaction ────────────────────────────────────────────────────────── */
+
+.node {
+  cursor: pointer;
+  outline: none;
+}
+
+.hit {
+  fill: transparent;
+}
+
+.node:focus-visible .nodeDot {
+  stroke: var(--accent-bright);
+  stroke-width: 2;
+}
+
+.node:focus-visible .nodeLabel,
+.node[data-active='true'] .nodeLabel {
+  fill: var(--text);
+}
+
+.node[data-active='true'] .nodeDot {
+  stroke: var(--accent-bright);
+}
+
+.node[data-active='true'] .nodeCore {
+  r: 3.4;
+}
+
+.node[data-active='true'] .halo {
+  opacity: 0.22;
+  animation: none;
+  transform: scale(1.18);
+}
+
+/* Quieten the unselected nodes while one is active */
+.wrap[data-dimmed='true'] .node:not([data-active='true']) .nodeLabel {
+  fill: var(--ink-400);
+}
+
+.wrap[data-dimmed='true'] .node:not([data-active='true']) .halo {
+  opacity: 0.03;
+}
+
+.edge {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.14);
+  stroke-width: 1;
+  transition: stroke 0.28s var(--ease), stroke-width 0.28s var(--ease);
+}
+
+.edge[data-active='true'] {
+  stroke: var(--accent-bright);
+  stroke-width: 1.6;
+}
+
+.edgeGlow {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-dasharray: 26 240;
+  opacity: 0.85;
+  animation: flow 7s linear infinite;
+  transition: opacity 0.28s var(--ease);
+  pointer-events: none;
+}
+
+.edgeGlow[data-active='true'] {
+  animation-duration: 2.6s;
+  opacity: 1;
+}
+
+@keyframes flow {
+  from {
+    stroke-dashoffset: 266;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.halo {
+  fill: var(--accent);
+  opacity: 0.08;
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+  animation: breathe 6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.06;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.14;
+    transform: scale(1.12);
+  }
+}
+
+.nodeDot {
+  fill: var(--ink-950);
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-width: 1;
+  transition: stroke 0.26s var(--ease), stroke-width 0.26s var(--ease);
+}
+
+.nodeCore {
+  fill: var(--accent-bright);
+  transition: r 0.26s var(--ease);
+}
+
+.nodeLabel {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  fill: var(--text-dim);
+  transition: fill 0.26s var(--ease);
+  pointer-events: none;
+  user-select: none;
+}
+
+.centerRing {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-dasharray: 3 7;
+  animation: spin 60s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.labelShort {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .nodeLabel {
+    font-size: 15px;
+    letter-spacing: 0.1em;
+  }
+
+  .labelShort {
+    display: block;
+  }
+
+  .nodeLabel[data-has-short='true'][data-variant='full'] {
+    display: none;
+  }
+
+  .centerLabel {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+  }
+}
+
+.centerLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  fill: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edgeGlow {
+    animation: none;
+    opacity: 0.5;
+    stroke-dasharray: none;
+  }
+
+  .halo,
+  .centerRing {
+    animation: none;
+  }
+}
+
+
+/* ── Caption ────────────────────────────────────────────────────────────── */
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  min-height: 2.6em;
+  margin-top: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
+
+.captionLabel {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+}
+
+.captionText {
+  color: var(--text-muted);
+}
+
+.captionHint {
+  color: var(--text-faint);
+}
+
+@media (max-width: 480px) {
+  .caption {
+    min-height: 3.4em;
+  }
+}
