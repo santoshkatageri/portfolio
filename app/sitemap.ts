@@ -5,7 +5,7 @@ import { SITE_ROUTES } from '@/lib/nav';
 
 export const dynamic = 'force-static';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = content.profile.siteUrl;
   const now = new Date();
 
@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '/' ? 1 : route === '/resume' ? 0.5 : 0.8,
   }));
 
-  const articleRoutes: MetadataRoute.Sitemap = getArticles().map((article) => ({
+  const articleRoutes: MetadataRoute.Sitemap = (await getArticles()).map((article) => ({
     url: `${base}/writing/${article.slug}`,
     lastModified: new Date(`${article.date}T00:00:00Z`),
     changeFrequency: 'yearly',

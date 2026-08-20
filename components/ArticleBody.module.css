@@ -180,3 +180,162 @@
   background: hsl(var(--surface-hsl) / 0.7);
   font-weight: 560;
 }
+
+/* ── Ghost HTML (Koenig editor output) ──────────────────────────────────────
+   Applied only to posts whose body comes from Ghost. The scoped selectors
+   style the cards the editor emits; anything unstyled degrades to clean
+   article typography. */
+
+/* Fenced code blocks: frame + language label (data-lang is injected by the
+   Ghost adapter from the code class). */
+.body pre {
+  position: relative;
+  margin: 0;
+  padding: 1.4rem 1.2rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: hsl(0 0% 6%);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  line-height: 1.7;
+  -webkit-overflow-scrolling: touch;
+}
+
+.body pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.body pre[data-lang]::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.4rem 1rem 0.3rem;
+  border-bottom: 1px solid var(--line);
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* Image cards + captions */
+.body :global(.kg-card) {
+  margin-block: 1.6em;
+}
+
+.body :global(.kg-image-card) img {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.body :global(.kg-image-card) figcaption,
+.body :global(.kg-bookmark-card) figcaption {
+  margin-top: 0.55rem;
+  font-size: 0.85em;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* Callout card */
+.body :global(.kg-callout-card) {
+  padding: 1rem 1.2rem;
+  border-left: 2px solid var(--accent-line);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: hsl(0 0% 100% / 2%);
+  color: var(--text-muted);
+  max-width: 62ch;
+}
+
+.body :global(.kg-callout-emoji) {
+  margin-right: 0.4rem;
+}
+
+/* Bookmark (link preview) card */
+.body :global(.kg-bookmark-card) {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: hsl(var(--surface-hsl) / 0.55);
+  overflow: hidden;
+  max-width: 62ch;
+  transition: border-color 0.2s var(--ease);
+}
+
+.body :global(.kg-bookmark-card:hover) {
+  border-color: var(--line-strong);
+}
+
+.body :global(.kg-bookmark-content) {
+  padding: 0.9rem 1.1rem;
+}
+
+.body :global(.kg-bookmark-title) {
+  font-weight: 560;
+  color: var(--text);
+}
+
+.body :global(.kg-bookmark-description),
+.body :global(.kg-bookmark-metadata) {
+  font-size: 0.85em;
+  color: var(--text-dim);
+}
+
+.body :global(.kg-bookmark-thumbnail) img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Gallery card */
+.body :global(.kg-gallery-grid) {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.body :global(.kg-gallery-row) {
+  display: grid;
+  grid-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.body :global(.kg-gallery-image) img {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+/* Embeds (video etc.) */
+.body :global(.kg-embed-card) iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--radius);
+}
+
+/* Toggle card */
+.body :global(.kg-toggle-card) details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: hsl(var(--surface-hsl) / 0.5);
+  max-width: 62ch;
+}
+
+.body :global(.kg-toggle-card) summary {
+  padding: 0.8rem 1.1rem;
+  cursor: pointer;
+  font-weight: 560;
+}
+
+.body :global(.kg-toggle-card) details > div {
+  padding: 0 1.1rem 0.9rem;
+  color: var(--text-dim);
+  font-size: 0.95em;
+}

@@ -4,6 +4,12 @@ MDX articles for the `/writing` section live in this folder (`.mdx` files).
 Nothing is auto-generated and nothing is faked — the Writing page shows an
 honest empty state until the first real article file exists.
 
+> **Ghost mode:** when `GHOST_API_URL` + `GHOST_CONTENT_API_KEY` are set at
+> build time, the Ghost Content API replaces this folder as the article
+> source (see the root README). The taxonomy conventions are identical —
+> same categories and series ids from `content/writing.ts`, expressed as
+> Ghost tags.
+
 ## Adding an article
 
 Create an `.mdx` file named after its slug, optionally inside a category

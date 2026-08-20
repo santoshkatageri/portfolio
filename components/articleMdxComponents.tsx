@@ -80,11 +80,25 @@ function Pre(props: ComponentPropsWithoutRef<'pre'>) {
 
 /**
  * Scope wrapper for a rendered article body. Element-level reading styles in
- * ArticleBody.module.css hang off this class, so article pages should render
- * MDX inside it.
+ * ArticleBody.module.css hang off this class.
+ *
+ * - MDX articles render compiled components as `children`.
+ * - Ghost articles pass their `html` string: it comes from the site's own CMS
+ *   (trusted, same as the MDX source) and the scoped CSS styles Ghost's
+ *   element and Koenig-card markup.
  */
-export function ArticleBody({ children }: { children: ReactNode }) {
-  return <div className={styles.body}>{children}</div>;
+export function ArticleBody({
+  children,
+  html,
+}: {
+  children?: ReactNode;
+  html?: string;
+}) {
+  return (
+    <div className={styles.body}>
+      {html ? <div dangerouslySetInnerHTML={{ __html: html }} /> : children}
+    </div>
+  );
 }
 
 export const mdxComponents: Record<string, ElementType> = {

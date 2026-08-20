@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   applicationName: profile.brand,
   authors: [{ name: profile.name }],
   creator: profile.name,
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', types: { 'application/rss+xml': '/rss.xml' } },
   openGraph: {
     type: 'website',
     url: profile.siteUrl,

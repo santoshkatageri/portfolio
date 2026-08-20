@@ -18,12 +18,12 @@ import { WRITING_SERIES } from '@/content/writing';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', types: { 'application/rss+xml': '/rss.xml' } },
 };
 
 const kernelbites = WRITING_SERIES[0];
 
-export default function HomePage() {
+export default async function HomePage() {
   const {
     profile,
     experience,
@@ -35,10 +35,10 @@ export default function HomePage() {
     principles,
   } = content;
 
-  const articles = getArticles();
+  const articles = await getArticles();
   const latestArticles = articles.slice(0, 3);
   const kernelbitesArticles = kernelbites
-    ? getSeriesArticles(kernelbites.id)
+    ? await getSeriesArticles(kernelbites.id)
     : [];
 
   const featured = projects.filter((project) => project.featured);

@@ -31,16 +31,66 @@ deploy it to Cloudflare Pages (or any static host) as-is.
 
 ## Content architecture
 
-Content stays separate from presentation. Two places, both data:
+Content stays separate from presentation:
 
 | Source                   | Owns                                                       |
 | ------------------------ | ---------------------------------------------------------- |
 | `content/site.ts`        | the person: profile, experience, projects, skills, education, recognition, links, experiments, lab tracks, explorations, principles |
-| `content/writing.ts`     | the writing system: categories and content series (KernelBites) |
-| `content/articles/*.mdx` | article bodies with frontmatter (see that folder's README) |
+| `content/writing.ts`     | the writing taxonomy: categories and content series (KernelBites) — canonical for **both** article sources |
+| `content/articles/*.mdx` | article bodies with frontmatter — the default source (see that folder's README) |
+| Ghost (optional)         | article bodies when headless mode is enabled — see below |
 
 Types live in `content/types.ts`. No component hard-codes biography,
 employment, project or skill facts.
+
+### Writing sources: MDX (default) or Ghost (headless CMS)
+
+`lib/articles.ts` is the one interface pages consume. Behind it, the article
+source is selected at build time:
+
+- **No configuration** → MDX files in `content/articles/`.
+- **`GHOST_API_URL` + `GHOST_CONTENT_API_KEY` set** → Ghost Content API
+  becomes the source of truth for published writing (MDX files are ignored).
+
+Both produce the same `WritingArticle[]`, so no UI changes with the source.
+
+```
+GitHub (design, portfolio/labs content, taxonomy)
+   │
+   ▼
+Cloudflare Pages build ── fetch at build time ──► Ghost Content API
+   │                                                (Ghost(Pro)/self-hosted,
+   ▼                                                 Private Site Mode)
+out/ served by Cloudflare CDN  ◄── publish webhook ── Ghost → Deploy Hook
+```
+
+**Ghost tag conventions** (taxonomy ids live in `content/writing.ts` and are
+validated at build — a post with no/unknown category fails the build):
+
+| Meaning | Tag in Ghost | Example |
+| --- | --- | --- |
+| Category | public tag, slug = category id | `system-design` |
+| Series | public tag, slug = series id | `kernelbites` |
+| Series slot | internal tag | `#slot-01` → renders as `#01` |
+| Free-form tags | any other public tags | `Terraform` |
+
+**Resilience:** every successful Ghost fetch is cached to
+`.ghost-cache.json` (gitignored). If Ghost is unreachable during a build, the
+cache is reused with a warning; with no cache the build **fails on purpose**
+so Cloudflare keeps serving the last good deployment instead of a site with
+its articles missing.
+
+**Drafts:** the Content API never returns drafts or scheduled posts, so they
+can never leak into the static site. The KernelBites roadmap
+(`plannedTopics`) stays in the repository — drafts are invisible to the
+Content API by design.
+
+**Setup:** host Ghost, enable *Private Site Mode* (prevents duplicate-content
+SEO), create a Custom Integration, add the Content API key + URL to Cloudflare
+Pages environment variables, and point Ghost webhooks (`post.published`,
+`post.published.edited`, `post.unpublished`, `post.deleted`) at a Cloudflare
+**Deploy Hook** (Workers & Pages → Settings → Builds) so publishes rebuild the
+site. A scheduled nightly rebuild is a good missed-webhook safety net.
 
 ### Content rules baked into this repo
 
@@ -115,7 +165,8 @@ app/
   template.tsx            route transition (Framer Motion)
   page.tsx                homepage composition
   work/ writing/ labs/ about/ resume/     route pages
-  writing/[slug]/         article pages (generateStaticParams + MDX)
+  writing/[slug]/         article pages (generateStaticParams; MDX or Ghost HTML)
+  rss.xml/route.ts        build-time RSS feed from the active source
   globals.css             design tokens, base layer, utilities
 components/
   Hero, Marquee, SystemGraph, SiteHeader, SiteFooter, Reveal,
@@ -129,7 +180,9 @@ content/
   writing.ts              categories & series
   articles/               .mdx article bodies
 lib/
-  articles.ts             build-time article loader (fs + gray-matter)
+  articles.ts             article interface + source dispatch (MDX default, Ghost optional)
+  articles-mdx.ts         MDX loader (fs + gray-matter)
+  ghost.ts                Ghost Content API adapter (tag mapping, validation, cache)
   nav.ts                  route structure
 mdx-components.tsx         global MDX component mapping
 ```
@@ -149,6 +202,12 @@ Restrained, purposeful, and always cleaned up:
 
 Inter Variable + Instrument Serif, self-hosted through `@fontsource`
 packages — no runtime web-font requests, fully static-export friendly.
+
+## Feeds
+
+`/rss.xml` is generated at build time from the active article source (MDX or
+Ghost) and advertised via `<link rel="alternate">` — the feed always matches
+the static site exactly. Ghost's own `/rss/` stays private in headless mode.
 
 ## Accessibility
 

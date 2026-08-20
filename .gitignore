@@ -7,3 +7,6 @@ coverage
 .DS_Store
 *.tsbuildinfo
 .env*.local
+
+# Ghost build cache (written by lib/ghost.ts after a successful fetch)
+.ghost-cache.json

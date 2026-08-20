@@ -15,15 +15,17 @@ export const metadata: Metadata = {
   title: 'Writing',
   description:
     'Technical writing on system design, Kubernetes, DevOps, cloud and platform engineering — including the KernelBites series on the kernel-level ideas behind everyday engineering.',
-  alternates: { canonical: '/writing' },
+  alternates: { canonical: '/writing', types: { 'application/rss+xml': '/rss.xml' } },
 };
 
-export default function WritingPage() {
-  const articles = getArticles();
-  const series = WRITING_SERIES.map((item) => ({
-    series: item,
-    published: getSeriesArticles(item.id),
-  }));
+export default async function WritingPage() {
+  const articles = await getArticles();
+  const series = await Promise.all(
+    WRITING_SERIES.map(async (item) => ({
+      series: item,
+      published: await getSeriesArticles(item.id),
+    })),
+  );
 
   return (
     <main id="main">

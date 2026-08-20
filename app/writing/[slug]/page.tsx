@@ -44,8 +44,8 @@ const articleContext = (
  * '_' can never collide with a real slug (the loader skips _-prefixed files)
  * and renders the 404 page.
  */
-export function generateStaticParams(): Params[] {
-  const articles = getArticles();
+export async function generateStaticParams(): Promise<Params[]> {
+  const articles = await getArticles();
   return articles.length
     ? articles.map((article) => ({ slug: article.slug }))
     : [{ slug: '_' }];
@@ -57,13 +57,16 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article) return { title: 'Article not found' };
 
   return {
     title: article.title,
     description: article.description ?? article.title,
-    alternates: { canonical: `/writing/${article.slug}` },
+    alternates: {
+      canonical: `/writing/${article.slug}`,
+      types: { 'application/rss+xml': '/rss.xml' },
+    },
     openGraph: {
       type: 'article',
       title: article.title,
@@ -80,20 +83,22 @@ export default async function ArticlePage({
   params: Promise<Params>;
 }) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = await getArticleBySlug(slug);
   if (!article) notFound();
 
-  /* The MDX body is a real module compiled by the bundler with the app's own
-     React runtime — no eval, no extra React copy. New .mdx files are picked
-     up automatically; no UI component changes. */
-  let Content: ComponentType;
-  try {
-    Content = articleContext(`./${article.path}`).default;
-  } catch {
-    notFound();
+  /* MDX bodies are real modules compiled by the bundler with the app's own
+     React runtime — no eval, no extra React copy. Ghost bodies are trusted
+     HTML rendered inside the scoped ArticleBody styles instead. */
+  let Content: ComponentType | null = null;
+  if (article.format === 'mdx') {
+    try {
+      Content = articleContext(`./${article.path}`).default;
+    } catch {
+      notFound();
+    }
   }
 
-  const related = getRelatedArticles(article);
+  const related = await getRelatedArticles(article);
 
   return (
     <main id="main" className={styles.main}>
@@ -143,9 +148,13 @@ export default async function ArticlePage({
         ) : null}
 
         <div className={`shell ${styles.bodyShell}`}>
-          <ArticleBody>
-            <Content />
-          </ArticleBody>
+          {article.format === 'html' ? (
+            <ArticleBody html={article.body} />
+          ) : Content ? (
+            <ArticleBody>
+              <Content />
+            </ArticleBody>
+          ) : null}
 
           {article.tags.length ? (
             <footer className={styles.footer}>

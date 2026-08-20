@@ -3,8 +3,10 @@
  *
  * Categories and series are data, not markup: the UI reads them from here, so
  * adding a category or a planned series entry never requires touching a
- * component. Articles themselves live as MDX files under `content/articles/`
- * (see that folder's README) and are loaded at build time by `lib/articles.ts`.
+ * component. This taxonomy is canonical for BOTH article sources — MDX
+ * frontmatter in `content/articles/` and Ghost tags in headless mode
+ * (`lib/ghost.ts` validates Ghost tags against these ids at build time).
+ * Articles themselves are loaded at build time by `lib/articles.ts`.
  */
 
 /** A category an article can belong to (referenced from article frontmatter). */
