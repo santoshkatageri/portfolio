@@ -1,40 +1,53 @@
-import type { Article } from '@/content/types';
+import Link from 'next/link';
+import type { WritingArticle } from '@/lib/articles';
+import { formatArticleDate } from '@/lib/articles';
 import Reveal from './Reveal';
 import styles from './ArticleCard.module.css';
 
+/**
+ * Card for an on-site article (MDX under content/articles). The whole card
+ * links to /writing/[slug]; series articles carry their series badge.
+ */
 export default function ArticleCard({
   article,
-  index,
+  index = 0,
 }: {
-  article: Article;
-  index: number;
+  article: WritingArticle;
+  index?: number;
 }) {
   return (
-    <Reveal as="article" className={styles.card} delay={index * 50}>
-      {(article.date || article.readingTime || article.tags.length) && (
+    <Reveal
+      as="article"
+      className={styles.card}
+      delay={index * 60}
+      dataAttrs={{ 'data-series': article.series?.id }}
+    >
+      <Link className={styles.link} href={`/writing/${article.slug}`}>
         <p className={styles.meta}>
-          {article.date ? <span>{article.date}</span> : null}
-          {article.readingTime ? <span>{article.readingTime}</span> : null}
-          {article.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
+          {article.series ? (
+            <span className={styles.series}>
+              {article.series.name}
+              {article.seriesSlot ? ` ${article.seriesSlot}` : ''}
+            </span>
+          ) : null}
+          <span className={styles.category}>{article.category.label}</span>
+          <span>{formatArticleDate(article.date)}</span>
+          <span>{article.readingTime}</span>
         </p>
-      )}
-      <h3 className={styles.title}>
-        {article.href ? (
-          <a
-            className={styles.titleLink}
-            href={article.href}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            {article.title} <span aria-hidden="true">↗</span>
-          </a>
-        ) : (
-          article.title
-        )}
-      </h3>
-      <p className={styles.excerpt}>{article.excerpt}</p>
+        <h3 className={`display ${styles.title}`}>{article.title}</h3>
+        {article.description ? (
+          <p className={styles.excerpt}>{article.description}</p>
+        ) : null}
+        {article.tags.length ? (
+          <ul className="chips" aria-hidden="true">
+            {article.tags.map((tag) => (
+              <li className="chip" key={tag}>
+                {tag}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </Link>
     </Reveal>
   );
 }

@@ -1,0 +1,52 @@
+.strip {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: hsl(var(--surface-hsl) / 0.4);
+  padding-block: 0.85rem;
+  user-select: none;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.half {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.6rem;
+  padding-inline: 1.6rem;
+}
+
+.word {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.15rem, 1rem + 1.2vw, 1.7rem);
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.dot {
+  color: var(--accent-soft);
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    transform: none !important;
+  }
+
+  /* One clean pass of the sequence is enough without motion */
+  .half:last-child {
+    display: none;
+  }
+}

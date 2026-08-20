@@ -13,10 +13,17 @@ export type Profile = {
   name: string;
   /** Short positioning line, e.g. "AI · DevOps · Software · Systems" */
   positioning: string;
+  /** Identity line used in the hero, e.g. "Software Engineer · Builder · Systems Explorer" */
+  identity: string;
   /** Brand philosophy line */
   philosophy: string;
   /** Hero headline */
   headline: string;
+  /**
+   * Editorial display lines for the cinematic hero (Instrument Serif italic).
+   * Derived from the positioning / philosophy, never fictional.
+   */
+  displayLines: string[];
   /** 1–2 sentence hero support copy */
   intro: string;
   /** Optional current role line shown under the name in About */
@@ -132,6 +139,45 @@ export type Experiment = {
   status: 'planned' | 'in-progress' | 'published';
   tags: string[];
   href?: string;
+  /* ── Lab detail fields (all optional so a minimal entry stays valid) ── */
+  /** Lab grouping, e.g. "AI experiments", "DevOps" — see labTracks ids */
+  track?: string;
+  /** Why this experiment exists — the question or itch behind it */
+  why?: string;
+  /** What the experiment actually taught — added once it is real */
+  learned?: string;
+  /** Technologies used in the experiment */
+  technologies?: string[];
+  /** Public repository, when one exists */
+  github?: string;
+  /** Live demo, when one exists */
+  demo?: string;
+  /** Optional last-update marker, e.g. "2025-01" */
+  updated?: string;
+};
+
+/**
+ * A current area of exploration shown on the homepage ("What I'm exploring").
+ * Framed as intent — what is being dug into right now — never as a claim of
+ * mastery. Keep entries aligned with the résumé / positioning / lab tracks.
+ */
+export type Exploration = {
+  id: string;
+  /** Short area name, e.g. "System design" */
+  area: string;
+  /** One line on what exactly is being explored in that area */
+  focus: string;
+  /** Optional pointer to something concrete being used/read/built */
+  note?: string;
+};
+
+/** One of the four operating principles (build / learn / explore / share). */
+export type Principle = {
+  id: string;
+  /** Imperative label, e.g. "Build" */
+  label: string;
+  /** One line expanding the principle */
+  body: string;
 };
 
 export type Article = {
@@ -163,4 +209,8 @@ export type SiteContent = {
   experiments: Experiment[];
   labTracks: LabTrack[];
   articles: Article[];
+  /** Homepage "What I'm exploring" — current, intent-framed areas */
+  explorations: Exploration[];
+  /** Operating principles: build / learn / explore / share */
+  principles: Principle[];
 };

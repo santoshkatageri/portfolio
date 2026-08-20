@@ -1,18 +1,24 @@
 .card {
-  display: grid;
-  gap: 0.7rem;
-  padding: clamp(1.1rem, 2.2vw, 1.5rem) 0;
   border-top: 1px solid var(--line);
+  transition: background 0.25s var(--ease);
 }
 
-.card:last-child {
-  border-bottom: 1px solid var(--line);
+.card:hover {
+  background: hsl(0 0% 100% / 1.5%);
+}
+
+.link {
+  display: grid;
+  gap: 0.7rem;
+  padding: clamp(1.2rem, 2.4vw, 1.6rem) clamp(0.4rem, 1.5vw, 1rem);
+  margin-block: 0 clamp(0.4rem, 1vw, 0.6rem);
 }
 
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 0.9rem;
+  align-items: center;
+  gap: 0.4rem 0.9rem;
   font-family: var(--font-mono);
   font-size: var(--step--2);
   letter-spacing: 0.12em;
@@ -20,20 +26,36 @@
   color: var(--text-faint);
 }
 
+.series {
+  color: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  padding: 0.12rem 0.55rem;
+  background: var(--accent-wash);
+}
+
+.category {
+  color: var(--text-muted);
+}
+
 .title {
-  font-size: var(--step-2);
-  letter-spacing: -0.024em;
+  font-size: clamp(1.55rem, 1.15rem + 1.6vw, 2.2rem);
+  line-height: 1.12;
+  max-width: 26ch;
+  transition: color 0.2s var(--ease);
 }
 
-.titleLink {
-  transition: color 0.22s var(--ease);
-}
-
-.titleLink:hover {
-  color: var(--accent-bright);
+.card:hover .title {
+  color: var(--accent-soft);
 }
 
 .excerpt {
   max-width: 66ch;
-  color: var(--text-muted);
+  color: var(--text-dim);
+  font-size: var(--step--1);
+  line-height: 1.65;
+}
+
+.card:last-child {
+  border-bottom: 1px solid var(--line);
 }

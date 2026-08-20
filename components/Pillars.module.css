@@ -13,12 +13,12 @@
   gap: 0.7rem;
   align-content: start;
   padding: clamp(1.4rem, 3vw, 2rem);
-  background: var(--ink-1000);
+  background: var(--bg);
   transition: background 0.3s var(--ease);
 }
 
 .pillar:hover {
-  background: var(--ink-950);
+  background: var(--surface);
 }
 
 .pillar::after {
@@ -41,7 +41,7 @@
   font-family: var(--font-mono);
   font-size: var(--step--2);
   letter-spacing: 0.14em;
-  color: var(--accent-bright);
+  color: var(--accent-soft);
 }
 
 .title {
@@ -66,4 +66,9 @@
   .grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+}
+
+.title {
+  font-size: clamp(1.8rem, 1.1rem + 2.4vw, 2.6rem);
+  line-height: 1;
 }

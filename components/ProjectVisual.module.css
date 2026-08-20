@@ -4,8 +4,8 @@
   border-radius: var(--radius);
   border: 1px solid var(--line);
   background:
-    radial-gradient(70% 90% at 20% 0%, rgba(77, 141, 255, 0.1), transparent 60%),
-    var(--ink-950);
+    radial-gradient(70% 90% at 20% 0%, rgba(137, 170, 204, 0.1), transparent 60%),
+    var(--surface);
   aspect-ratio: 16 / 10;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .node {
-  fill: var(--ink-900);
+  fill: hsl(0 0% 10%);
   stroke: rgba(255, 255, 255, 0.3);
   stroke-width: 1;
 }
@@ -54,7 +54,7 @@
   padding: 0.22rem 0.6rem;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(6, 7, 10, 0.7);
+  background: rgba(10, 10, 10, 0.72);
   font-family: var(--font-mono);
   font-size: var(--step--2);
   letter-spacing: 0.12em;

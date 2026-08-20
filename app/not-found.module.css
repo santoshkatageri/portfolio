@@ -1,22 +1,31 @@
 .wrap {
   display: grid;
-  align-items: center;
+  align-content: center;
   min-height: 100svh;
-  padding-block: 4rem;
+  padding-top: 5rem;
+  padding-bottom: 4rem;
 }
 
-.wrap > :global(.shell) {
+.wrap :global(.shell) {
   display: grid;
   gap: 1.1rem;
   justify-items: start;
 }
 
 .title {
-  font-size: var(--step-4);
-  max-width: 18ch;
+  font-size: clamp(2.4rem, 1.6rem + 4vw, 4.2rem);
+  line-height: 1.05;
+  max-width: 16ch;
 }
 
 .body {
-  color: var(--text-muted);
-  max-width: 46ch;
+  color: var(--text-dim);
+  max-width: 48ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1rem;
 }

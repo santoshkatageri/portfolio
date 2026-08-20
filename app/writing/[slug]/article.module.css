@@ -1,0 +1,114 @@
+.main {
+  padding-top: clamp(7.5rem, 16vh, 10rem);
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.header {
+  display: grid;
+  gap: 1.1rem;
+  padding-bottom: clamp(2rem, 5vw, 3.2rem);
+}
+
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.series {
+  padding: 0.16rem 0.6rem;
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  background: var(--accent-wash);
+  color: var(--accent-soft);
+}
+
+.title {
+  font-size: clamp(2.4rem, 1.5rem + 4.4vw, 4.4rem);
+  line-height: 1.04;
+  max-width: 20ch;
+}
+
+.description {
+  max-width: 60ch;
+  font-size: var(--step-1);
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.metaDivider {
+  width: 1px;
+  height: 0.9em;
+  background: var(--line-strong);
+}
+
+/* ── Cover ───────────────────────────────────────────────────────────────── */
+
+.cover {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  margin-bottom: clamp(2rem, 5vw, 3.2rem);
+}
+
+/* ── Body ────────────────────────────────────────────────────────────────── */
+
+.bodyShell {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.footer {
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid var(--line);
+}
+
+/* ── Related ─────────────────────────────────────────────────────────────── */
+
+.related {
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+  border-top: 1px solid var(--line);
+  background: hsl(var(--surface-hsl) / 0.4);
+}
+
+.relatedTitle {
+  margin-bottom: clamp(1.4rem, 3vw, 2rem);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.relatedList {
+  display: grid;
+}
+
+/* ── Back ────────────────────────────────────────────────────────────────── */
+
+.backWrap {
+  padding-block: clamp(2rem, 5vw, 3.2rem);
+  border-top: 1px solid var(--line);
+}

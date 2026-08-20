@@ -38,7 +38,7 @@
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  background: var(--ink-900);
+  background: hsl(0 0% 10%);
   border: 1px solid var(--line-strong);
 }
 
@@ -70,7 +70,7 @@
   border-radius: 999px;
   border: 1px solid var(--accent-line);
   background: var(--accent-wash);
-  color: var(--accent-bright);
+  color: var(--accent-soft);
   letter-spacing: 0.1em;
 }
 
@@ -131,4 +131,20 @@
     display: grid;
     gap: 1rem;
   }
+}
+
+/* ── Compact variant (homepage) ──────────────────────────────────────────── */
+
+.compactTitle {
+  font-size: var(--step-1);
+  letter-spacing: -0.02em;
+}
+
+.timeline[data-variant='compact'] .item {
+  gap: 0.5rem;
+}
+
+.timeline[data-variant='compact'] .summary {
+  font-size: var(--step--1);
+  max-width: 62ch;
 }

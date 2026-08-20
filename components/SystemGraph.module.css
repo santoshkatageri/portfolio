@@ -24,7 +24,7 @@
 }
 
 .node:focus-visible .nodeDot {
-  stroke: var(--accent-bright);
+  stroke: var(--accent-soft);
   stroke-width: 2;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .node[data-active='true'] .nodeDot {
-  stroke: var(--accent-bright);
+  stroke: var(--accent-soft);
 }
 
 .node[data-active='true'] .nodeCore {
@@ -49,7 +49,7 @@
 
 /* Quieten the unselected nodes while one is active */
 .wrap[data-dimmed='true'] .node:not([data-active='true']) .nodeLabel {
-  fill: var(--ink-400);
+  fill: var(--text-faint);
 }
 
 .wrap[data-dimmed='true'] .node:not([data-active='true']) .halo {
@@ -64,7 +64,7 @@
 }
 
 .edge[data-active='true'] {
-  stroke: var(--accent-bright);
+  stroke: var(--accent-soft);
   stroke-width: 1.6;
 }
 
@@ -116,14 +116,14 @@
 }
 
 .nodeDot {
-  fill: var(--ink-950);
+  fill: var(--surface);
   stroke: rgba(255, 255, 255, 0.28);
   stroke-width: 1;
   transition: stroke 0.26s var(--ease), stroke-width 0.26s var(--ease);
 }
 
 .nodeCore {
-  fill: var(--accent-bright);
+  fill: var(--accent-soft);
   transition: r 0.26s var(--ease);
 }
 
@@ -218,7 +218,7 @@
   font-size: var(--step--2);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent-bright);
+  color: var(--accent-soft);
 }
 
 .captionText {

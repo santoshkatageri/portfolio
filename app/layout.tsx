@@ -1,18 +1,23 @@
 import type { Metadata, Viewport } from 'next';
 import { content } from '@/content/site';
+import SiteHeader from '@/components/SiteHeader';
+import SiteFooter from '@/components/SiteFooter';
+import MotionProvider from '@/components/MotionProvider';
+import '@fontsource-variable/inter/index.css';
+import '@fontsource/instrument-serif/400.css';
+import '@fontsource/instrument-serif/400-italic.css';
 import './globals.css';
 
 /**
- * Typography ships with zero web-font requests: the site uses the platform UI
- * stack (SF Pro / Segoe UI / Roboto) and the platform mono stack, defined in
- * globals.css. To switch to a hosted face later, add `next/font` here and set
- * the --font-sans / --font-mono variables on <html>.
+ * Fonts are self-hosted through @fontsource packages: no runtime requests,
+ * works identically on the static export. Inter Variable covers the
+ * interface; Instrument Serif (italic) covers editorial display headings.
  */
 
 const { profile } = content;
 
 const description =
-  'Portfolio of Santosh Katageri — Senior Member of Technical Staff for Cloud and DevOps at Oracle. Infrastructure automation across OCI, AWS and GCP, selected projects, and an ongoing lab of experiments and notes.';
+  'Santosh Katageri — Senior Member of Technical Staff for Cloud and DevOps at Oracle. A personal engineering platform: selected work, technical writing, and an ongoing lab of experiments across cloud, DevOps and AI.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
@@ -45,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#06070a',
+  themeColor: '#0a0a0a',
   colorScheme: 'dark',
   width: 'device-width',
   initialScale: 1,
@@ -56,9 +61,24 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const sayHi = content.links.find((link) => link.primary) ?? content.links[0];
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <MotionProvider>
+          <a className="skip-link" href="#main">
+            Skip to content
+          </a>
+          <SiteHeader
+            brand={profile.brand}
+            name={profile.name}
+            sayHiHref={sayHi?.href}
+          />
+          {children}
+          <SiteFooter />
+        </MotionProvider>
+      </body>
     </html>
   );
 }

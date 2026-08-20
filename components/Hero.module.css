@@ -1,70 +1,93 @@
 .hero {
   position: relative;
-  padding-top: clamp(7.5rem, 16vw, 11rem);
-  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100svh;
+  padding-top: clamp(6.5rem, 14vh, 9.5rem);
+  padding-bottom: clamp(3.5rem, 8vh, 5.5rem);
   overflow: hidden;
 }
 
 .grid {
   display: grid;
-  gap: clamp(2.5rem, 6vw, 4rem);
+  gap: clamp(2.5rem, 6vw, 4.5rem);
   align-items: center;
 }
 
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+}
+
+/* ── Copy column ─────────────────────────────────────────────────────────── */
+
 .copy {
-  max-width: 44ch;
+  max-width: 46ch;
 }
 
 .identity {
-  display: grid;
-  gap: 0.4rem;
-  justify-items: start;
-  margin-bottom: clamp(1.5rem, 3vw, 2.1rem);
-}
-
-.identityName {
-  font-size: var(--step-1);
-  font-weight: 560;
-  letter-spacing: -0.022em;
-  line-height: 1.2;
-  color: var(--text);
-}
-
-.identityDot {
-  flex: none;
-  width: 5px;
-  height: 5px;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-wash);
-}
-
-.identityLine {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.3rem 0.6rem;
+  gap: 0.35rem 0.65rem;
+  margin-bottom: clamp(1.4rem, 3vw, 2rem);
   font-family: var(--font-mono);
   font-size: var(--step--2);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  line-height: 1.5;
-  color: var(--text-dim);
+  line-height: 1.6;
 }
+
+.identityName {
+  color: var(--text-muted);
+}
+
+.identityDivider {
+  color: var(--text-faint);
+}
+
+.identityRole {
+  color: var(--text-faint);
+}
+
+/* ── Display lines ───────────────────────────────────────────────────────── */
 
 .title {
-  max-width: 18ch;
-  font-size: clamp(2.1rem, 1.28rem + 3.5vw, 4.3rem);
-  margin-bottom: clamp(1.2rem, 2.6vw, 1.8rem);
-  font-weight: 540;
-  letter-spacing: -0.042em;
-  line-height: 1.04;
-  text-wrap: balance;
+  margin-bottom: clamp(1.2rem, 2.6vw, 1.9rem);
+  font-size: inherit;
 }
 
-.title em {
-  font-style: normal;
-  color: var(--text-muted);
+.lines {
+  display: block;
+}
+
+.lineMask {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.06em;
+  margin-block: -0.06em;
+}
+
+.line {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--step-display);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  /* Pre-hydration hidden state; GSAP reveals (see Hero.tsx) */
+  transform: translateY(112%);
+}
+
+.lineAccent {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .intro {
@@ -88,30 +111,12 @@
   }
 }
 
-.visual {
-  position: relative;
-  margin-inline: auto;
-  width: min(100%, 460px);
-}
-
-.visual::before {
-  content: '';
-  position: absolute;
-  inset: -8% -4%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 50% 45%,
-    rgba(77, 141, 255, 0.14),
-    transparent 65%
-  );
-  filter: blur(6px);
-  pointer-events: none;
-}
+/* ── Credibility ─────────────────────────────────────────────────────────── */
 
 .credibility {
   display: grid;
   gap: 0.4rem;
-  margin-top: clamp(1.9rem, 4vw, 2.5rem);
+  margin-top: clamp(1.9rem, 4vw, 2.6rem);
   padding-left: 0.9rem;
   border-left: 1px solid var(--line-strong);
 }
@@ -151,43 +156,69 @@
   }
 }
 
-.philosophy {
-  display: flex;
-  flex-wrap: wrap;
+/* ── Visual column ───────────────────────────────────────────────────────── */
+
+.visual {
+  position: relative;
+  margin-inline: auto;
+  width: min(100%, 500px);
+  opacity: 0;
+}
+
+.visual::before {
+  content: '';
+  position: absolute;
+  inset: -8% -4%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(137, 170, 204, 0.13),
+    transparent 65%
+  );
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+/* ── Scroll cue ──────────────────────────────────────────────────────────── */
+
+.scrollCue {
+  position: absolute;
+  left: var(--gutter);
+  bottom: clamp(1.4rem, 4vh, 2.4rem);
+  display: none;
   align-items: center;
-  gap: 0.5rem 1.1rem;
-  margin-top: clamp(3rem, 7vw, 5rem);
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-}
-
-.philosophyLabel {
-  font-family: var(--font-mono);
-  font-size: var(--step--2);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-}
-
-.philosophyText {
-  font-size: var(--step-0);
-  color: var(--text-muted);
-  letter-spacing: -0.01em;
+  gap: 0.7rem;
+  opacity: 0.75;
 }
 
 @media (min-width: 900px) {
-  .grid {
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-    gap: clamp(2rem, 5vw, 4.5rem);
-  }
-
-  .visual {
-    width: 100%;
+  .scrollCue {
+    display: flex;
   }
 }
 
-@media (min-width: 1200px) {
-  .copy {
-    max-width: 46ch;
+.scrollLine {
+  width: clamp(28px, 6vw, 64px);
+  height: 1px;
+  background: var(--line-strong);
+}
+
+/* ── Pre-hydration hidden states ────────────────────────────────────────────
+   Elements that GSAP reveals start hidden so there is no flash once the
+   timeline starts. Reduced-motion styles below make everything visible
+   without motion. */
+
+.hero :global([data-hero-fade]) {
+  opacity: 0;
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .hero :global([data-hero-fade]),
+  .visual {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

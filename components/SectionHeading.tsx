@@ -10,6 +10,8 @@ type SectionHeadingProps = {
   /** Heading level; sections use h2 by default */
   level?: 2 | 3;
   align?: 'split' | 'stack';
+  /** Render the title in italic Instrument Serif (editorial display) */
+  serif?: boolean;
   id?: string;
 };
 
@@ -19,6 +21,7 @@ export default function SectionHeading({
   intro,
   level = 2,
   align = 'split',
+  serif = true,
   id,
 }: SectionHeadingProps) {
   const Title = level === 2 ? 'h2' : 'h3';
@@ -30,7 +33,10 @@ export default function SectionHeading({
         <span className={styles.rule} aria-hidden="true" />
       </div>
       <div className={styles.body} data-align={align}>
-        <Title className={styles.title} id={id}>
+        <Title
+          className={`${styles.title} ${serif ? 'display' : ''}`}
+          id={id}
+        >
           {title}
         </Title>
         {intro ? <p className={styles.intro}>{intro}</p> : null}

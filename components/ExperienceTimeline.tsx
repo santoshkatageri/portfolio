@@ -2,9 +2,23 @@ import type { Experience } from '@/content/types';
 import Reveal from './Reveal';
 import styles from './ExperienceTimeline.module.css';
 
-export default function ExperienceTimeline({ roles }: { roles: Experience[] }) {
+/**
+ * Employment timeline.
+ * `variant="full"` shows summary, highlights and technology chips (About,
+ * Résumé). `variant="compact"` condenses each role to a row — period, title,
+ * company, summary — for the homepage.
+ */
+export default function ExperienceTimeline({
+  roles,
+  variant = 'full',
+}: {
+  roles: Experience[];
+  variant?: 'full' | 'compact';
+}) {
+  const compact = variant === 'compact';
+
   return (
-    <ol className={styles.timeline}>
+    <ol className={styles.timeline} data-variant={variant}>
       {roles.map((role, index) => {
         const current = /present|current/i.test(role.end);
         return (
@@ -22,7 +36,9 @@ export default function ExperienceTimeline({ roles }: { roles: Experience[] }) {
                 </span>
                 {current ? <span className={styles.current}>Current</span> : null}
               </p>
-              <h3 className={styles.title}>{role.title}</h3>
+              <h3 className={compact ? styles.compactTitle : styles.title}>
+                {role.title}
+              </h3>
               <p className={styles.company}>
                 {role.company}
                 {role.location ? <span> · {role.location}</span> : null}
@@ -32,7 +48,7 @@ export default function ExperienceTimeline({ roles }: { roles: Experience[] }) {
             <div className={styles.detail}>
               {role.summary ? <p className={styles.summary}>{role.summary}</p> : null}
 
-              {role.highlights.length ? (
+              {!compact && role.highlights.length ? (
                 <ul className={styles.highlights}>
                   {role.highlights.map((item) => (
                     <li key={item}>{item}</li>
@@ -40,7 +56,7 @@ export default function ExperienceTimeline({ roles }: { roles: Experience[] }) {
                 </ul>
               ) : null}
 
-              {role.technologies.length ? (
+              {!compact && role.technologies.length ? (
                 <ul className="chips" aria-label={`Technologies used at ${role.company}`}>
                   {role.technologies.map((tech) => (
                     <li className="chip" key={tech}>

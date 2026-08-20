@@ -16,7 +16,10 @@ export default function ProjectCard({ project }: { project: Project }) {
   );
 
   return (
-    <article className={styles.card} data-featured={project.featured || undefined}>
+    <article
+      className={styles.card}
+      data-featured={project.featured || undefined}
+    >
       <div className={styles.media}>
         <ProjectVisual variant={project.visual} label={project.category} />
       </div>
@@ -25,10 +28,10 @@ export default function ProjectCard({ project }: { project: Project }) {
         {(project.period || project.category) && (
           <div className={styles.meta}>
             {project.category ? (
-              <span className={styles.metaItem}>{project.category}</span>
+              <span className={styles.metaCategory}>{project.category}</span>
             ) : null}
             {project.period ? (
-              <span className={styles.metaItem}>{project.period}</span>
+              <span className={styles.metaPeriod}>{project.period}</span>
             ) : null}
           </div>
         )}
@@ -55,7 +58,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               aria-controls={detailId}
               onClick={() => setOpen((value) => !value)}
             >
-              {open ? 'Hide project details' : 'View project details'}
+              {open ? 'Hide details' : 'View details'}
               <span className={styles.caret} aria-hidden="true">
                 ↓
               </span>
@@ -64,7 +67,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
           {project.link ? (
             <a
-              className={styles.link}
+              className="arrowLink"
               href={project.link.href}
               target="_blank"
               rel="noreferrer noopener"
@@ -77,19 +80,19 @@ export default function ProjectCard({ project }: { project: Project }) {
       </div>
 
       {hasDetail ? (
-        <div className={`${styles.detail} ${styles.drawer}`} data-open={open} id={detailId}>
+        <div className={styles.detail} data-open={open} id={detailId}>
           <div className={styles.detailInner}>
-            <div className={styles.detailContent}>
+            <div className={styles.detailGrid}>
               {project.context ? (
                 <div className={styles.block}>
-                  <h4>Context</h4>
+                  <h4 className={styles.blockTitle}>Context</h4>
                   <p>{project.context}</p>
                 </div>
               ) : null}
 
               {project.built?.length ? (
                 <div className={styles.block}>
-                  <h4>What I built</h4>
+                  <h4 className={styles.blockTitle}>What I built</h4>
                   <ul className={styles.bullets}>
                     {project.built.map((item) => (
                       <li key={item}>{item}</li>
@@ -99,8 +102,8 @@ export default function ProjectCard({ project }: { project: Project }) {
               ) : null}
 
               {project.outcomes?.length ? (
-                <div className={`${styles.block} ${styles.full}`}>
-                  <h4>Outcome</h4>
+                <div className={`${styles.block} ${styles.blockOutcome}`}>
+                  <h4 className={styles.blockTitle}>Outcome</h4>
                   <ul className={styles.bullets}>
                     {project.outcomes.map((item) => (
                       <li key={item}>{item}</li>

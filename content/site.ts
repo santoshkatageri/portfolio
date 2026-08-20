@@ -20,8 +20,14 @@ export const content: SiteContent = {
     brand: 'SPKATAGERI',
     name: 'Santosh Katageri',
     positioning: 'AI · DevOps · Software · Systems',
+    identity: 'Software Engineer · Builder · Systems Explorer',
     philosophy: 'Build it. Understand it. Experiment with it. Share it.',
     headline: 'I build, understand, and experiment with technology.',
+    displayLines: [
+      'Building systems.',
+      'Exploring AI.',
+      'Sharing what I learn.',
+    ],
     intro:
       'I build software, automate infrastructure, experiment with AI, and explore how modern systems work — from cloud platforms and DevOps to AI-powered applications.',
     currentRole: 'Senior Member of Technical Staff — Cloud & DevOps, Oracle',
@@ -246,6 +252,72 @@ export const content: SiteContent = {
   experiments: [],
 
   /**
+   * What is being dug into right now. Intent-framed areas tied to the
+   * positioning, the résumé stack and the Lab tracks — never claims of
+   * mastery, and never invented interests.
+   */
+  explorations: [
+    {
+      id: 'system-design',
+      area: 'System design',
+      focus:
+        'Reading, modelling and rebuilding architectures to understand the trade-offs behind them.',
+      note: 'Feeds the KernelBites writing series',
+    },
+    {
+      id: 'kubernetes',
+      area: 'Kubernetes',
+      focus:
+        'Going deeper than kubectl — how the scheduler, controllers and operators actually behave.',
+      note: 'Part of the DevOps & Infrastructure stack',
+    },
+    {
+      id: 'ai-tooling',
+      area: 'AI tooling & agents',
+      focus:
+        'Hands-on tests of models, prompts and agent workflows — what holds up outside a demo, and what does not.',
+      note: 'First track in the Lab',
+    },
+    {
+      id: 'cloud-engineering',
+      area: 'Cloud engineering',
+      focus:
+        'Automation-first infrastructure across OCI, AWS and GCP — reproducible over manual.',
+    },
+    {
+      id: 'production-engineering',
+      area: 'Production engineering',
+      focus:
+        'Release mechanics, health validation and keeping a service healthy once it is live.',
+      note: 'Daily practice at Oracle',
+    },
+  ],
+
+  /** The four operating principles behind SPKATAGERI. */
+  principles: [
+    {
+      id: 'build',
+      label: 'Build',
+      body: 'Projects, software, automations and experiments — shipped rather than sketched.',
+    },
+    {
+      id: 'learn',
+      label: 'Learn',
+      body: 'Systems, architecture and engineering concepts studied until the behaviour makes sense, not just the syntax.',
+    },
+    {
+      id: 'explore',
+      label: 'Explore',
+      body: 'AI tools, new technologies, workflows and prototypes tested against real problems.',
+    },
+    {
+      id: 'share',
+      label: 'Share',
+      body: 'Articles, notes, demos and public work — turning learning into something reusable.',
+    },
+  ],
+
+  /**
    * Themes the Lab is being built around. Descriptions of intent, not claims
    * that work already exists.
    */
@@ -288,7 +360,12 @@ export const content: SiteContent = {
     },
   ],
 
-  /** ── Notes & insights: only real, published writing ─────────────────────── */
+  /**
+   * ── Notes & insights: only real, published writing ───────────────────────
+   * This array holds externally hosted notes only. Articles written for this
+   * site live as MDX files under `content/articles/` and are loaded by
+   * `lib/articles.ts` — see `content/writing.ts` for categories and series.
+   */
   articles: [],
 };
 

@@ -1,0 +1,9 @@
+.btn {
+  margin-top: 1.4rem;
+}
+
+@media print {
+  .btn {
+    display: none !important;
+  }
+}

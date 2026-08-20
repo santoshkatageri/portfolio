@@ -1,44 +1,44 @@
 /* ==========================================================================
-   SPKATAGERI — design tokens & base layer
+   SPKATAGERI — personal engineering platform
+   Design tokens & base layer — dark-only, editorial, restrained
    ========================================================================== */
 
 :root {
-  /* Neutral base — warm-cooled near-black through paper white */
-  --ink-1000: #06070a;
-  --ink-950: #0a0b0f;
-  --ink-900: #0e1015;
-  --ink-850: #12141a;
-  --ink-800: #171a21;
-  --ink-700: #1e222b;
-  --ink-600: #2a2f3a;
-  --ink-500: #3b4250;
-  --ink-400: #5b6272;
-  --ink-300: #868d9c;
-  --ink-200: #b3b9c5;
-  --ink-100: #d8dce4;
-  --ink-050: #eef0f4;
+  /* ── Core palette (HSL channels per the design spec) ──────────────────── */
+  --bg-hsl: 0 0% 4%;
+  --surface-hsl: 0 0% 8%;
+  --text-hsl: 0 0% 96%;
+  --muted-hsl: 0 0% 53%;
+  --stroke-hsl: 0 0% 12%;
 
-  /* Single technology accent */
-  --accent: #4d8dff;
-  --accent-bright: #79aaff;
-  --accent-dim: #2f5fb3;
-  --accent-wash: rgba(77, 141, 255, 0.12);
-  --accent-line: rgba(77, 141, 255, 0.28);
+  --bg: hsl(var(--bg-hsl));
+  --bg-raised: hsl(var(--surface-hsl));
+  --surface: hsl(var(--surface-hsl));
+  --text: hsl(var(--text-hsl));
+  --text-muted: hsl(0 0% 78%);
+  --text-dim: hsl(var(--muted-hsl));
+  --text-faint: hsl(0 0% 45%);
+  --stroke: hsl(var(--stroke-hsl));
+  --line: hsl(var(--stroke-hsl));
+  --line-strong: hsl(0 0% 20%);
 
-  --bg: var(--ink-1000);
-  --bg-raised: var(--ink-950);
-  --bg-panel: rgba(255, 255, 255, 0.024);
-  --bg-panel-strong: rgba(255, 255, 255, 0.04);
-  --text: #f2f4f8;
-  --text-muted: var(--ink-200);
-  --text-dim: var(--ink-300);
-  --text-faint: #7b8394;
-  --line: rgba(255, 255, 255, 0.09);
-  --line-strong: rgba(255, 255, 255, 0.16);
+  --bg-panel: hsl(0 0% 100% / 2.4%);
+  --bg-panel-strong: hsl(0 0% 100% / 4%);
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI Variable Text', 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    sans-serif;
+  /* ── Accent: restrained blue gradient ─────────────────────────────────── */
+  --accent-soft: #89aacc;
+  --accent-strong: #4e85bf;
+  --accent-gradient: linear-gradient(90deg, #89aacc 0%, #4e85bf 100%);
+  --accent: #7ba3c9;
+  --accent-wash: rgba(137, 170, 204, 0.1);
+  --accent-line: rgba(137, 170, 204, 0.32);
+
+  /* ── Typography ───────────────────────────────────────────────────────── */
+  /* Faces are self-hosted via @fontsource (see app/layout.tsx) — no runtime
+     web-font requests, fully static-export friendly. */
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', 'JetBrains Mono', Menlo,
     Consolas, 'Liberation Mono', monospace;
 
@@ -51,7 +51,9 @@
   --step-3: clamp(1.6rem, 1.32rem + 1.35vw, 2.5rem);
   --step-4: clamp(1.95rem, 1.42rem + 2.6vw, 3.6rem);
   --step-5: clamp(2.3rem, 1.35rem + 4.6vw, 5.2rem);
+  --step-display: clamp(2.9rem, 1.1rem + 8vw, 6.8rem);
 
+  /* ── Layout ───────────────────────────────────────────────────────────── */
   --shell: 1200px;
   --shell-wide: 1400px;
   --gutter: clamp(1.1rem, 4vw, 3rem);
@@ -96,7 +98,7 @@ body {
   font-synthesis-weight: none;
 }
 
-/* Ambient background: one restrained gradient field, fixed and cheap */
+/* Ambient background: one restrained blue gradient field, fixed and cheap */
 body::before {
   content: '';
   position: fixed;
@@ -105,37 +107,15 @@ body::before {
   pointer-events: none;
   background:
     radial-gradient(
-      110ch 60ch at 78% -10%,
-      rgba(77, 141, 255, 0.1),
+      110ch 62ch at 78% -12%,
+      rgba(137, 170, 204, 0.09),
       transparent 62%
     ),
     radial-gradient(
-      90ch 50ch at 4% 8%,
-      rgba(120, 150, 255, 0.05),
+      90ch 50ch at 2% 6%,
+      rgba(78, 133, 191, 0.05),
       transparent 60%
     );
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.5;
-  background-image: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.022) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
-  background-size: 96px 96px;
-  mask-image: radial-gradient(120ch 90ch at 50% 0%, #000 5%, transparent 78%);
-  -webkit-mask-image: radial-gradient(
-    120ch 90ch at 50% 0%,
-    #000 5%,
-    transparent 78%
-  );
 }
 
 h1,
@@ -144,7 +124,7 @@ h3,
 h4,
 h5 {
   margin: 0;
-  font-weight: 560;
+  font-weight: 480;
   line-height: 1.08;
   letter-spacing: -0.032em;
   text-wrap: balance;
@@ -195,20 +175,35 @@ button {
 
 img,
 svg,
-canvas {
+canvas,
+video {
   display: block;
   max-width: 100%;
 }
 
 ::selection {
-  background: rgba(77, 141, 255, 0.32);
+  background: rgba(137, 170, 204, 0.32);
   color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent-bright);
+  outline: 2px solid var(--accent-soft);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* ── Editorial display type ──────────────────────────────────────────────── */
+
+.display,
+.display > * {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.display {
+  text-wrap: balance;
 }
 
 /* ── Layout primitives ──────────────────────────────────────────────────── */
@@ -258,8 +253,8 @@ canvas {
   z-index: 200;
   padding: 0.6rem 1rem;
   border-radius: var(--radius-sm);
-  background: var(--accent);
-  color: #04070f;
+  background: var(--accent-soft);
+  color: #05070a;
   font-weight: 600;
   transform: translateY(-160%);
   transition: transform 0.18s var(--ease);
@@ -301,15 +296,15 @@ canvas {
 }
 
 .btn--primary {
-  --btn-bg: var(--text);
-  --btn-fg: #06070a;
+  --btn-fg: #05070a;
   --btn-line: transparent;
+  background: var(--accent-gradient);
   font-weight: 580;
 }
 
 .btn--primary:hover {
-  background: #fff;
-  border-color: transparent;
+  background: var(--accent-gradient);
+  filter: brightness(1.08);
 }
 
 .btn__arrow {
@@ -318,6 +313,21 @@ canvas {
 
 .btn:hover .btn__arrow {
   transform: translateX(3px);
+}
+
+/* Small quiet link with an outbound arrow */
+.arrowLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  letter-spacing: -0.004em;
+  transition: color 0.2s var(--ease);
+}
+
+.arrowLink:hover {
+  color: var(--text);
 }
 
 /* ── Chips / tags ───────────────────────────────────────────────────────── */
@@ -341,11 +351,20 @@ canvas {
   line-height: 1.5;
 }
 
-/* ── Reveal on scroll ───────────────────────────────────────────────────── */
+/* ── Accent gradient text (used sparingly) ──────────────────────────────── */
+
+.gradientText {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Reveal on scroll (JS-assisted; CSS fallback respects reduced motion) ─ */
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(16px);
   transition:
     opacity 0.7s var(--ease-out),
     transform 0.7s var(--ease-out);
@@ -389,4 +408,25 @@ canvas {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ── Print ──────────────────────────────────────────────────────────────────
+   The résumé page prints as a clean light document; site chrome and the
+   ambient background are dropped. Page-specific print styles live with the
+   résumé component. */
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  body::before,
+  body::after {
+    display: none;
+  }
+
+  .site-chrome {
+    display: none !important;
+  }
 }

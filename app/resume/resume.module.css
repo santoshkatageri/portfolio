@@ -1,0 +1,255 @@
+.main {
+  padding-top: clamp(7.5rem, 16vh, 10rem);
+  padding-bottom: clamp(3rem, 8vw, 5rem);
+}
+
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(1.4rem, 3vw, 2rem);
+}
+
+/* ── The document ────────────────────────────────────────────────────────── */
+
+.paper {
+  display: grid;
+  gap: clamp(1.8rem, 4vw, 2.6rem);
+  padding: clamp(1.8rem, 4.5vw, 3.4rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: hsl(var(--surface-hsl) / 0.55);
+}
+
+.head {
+  display: grid;
+  gap: 0.5rem;
+  padding-bottom: clamp(1.2rem, 3vw, 1.8rem);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.name {
+  font-size: clamp(2.2rem, 1.5rem + 3.4vw, 3.6rem);
+  line-height: 1.02;
+}
+
+.positioning {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+}
+
+.role {
+  color: var(--text-muted);
+  font-size: var(--step-0);
+}
+
+.credibility {
+  color: var(--text-dim);
+  font-size: var(--step--1);
+}
+
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.4rem;
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  color: var(--text-faint);
+}
+
+.contacts a {
+  color: var(--text-muted);
+}
+
+/* ── Sections ────────────────────────────────────────────────────────────── */
+
+.section {
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.sectionTitle {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.role {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+}
+
+.roleHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 1rem;
+}
+
+.roleTitle {
+  font-size: var(--step-1);
+  font-weight: 570;
+  letter-spacing: -0.02em;
+}
+
+.rolePeriod {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+
+.roleCompany {
+  color: var(--text-muted);
+  font-weight: 520;
+}
+
+.roleSummary {
+  color: var(--text-dim);
+  font-size: var(--step--1);
+  line-height: 1.65;
+  max-width: 76ch;
+}
+
+.roleHighlights {
+  display: grid;
+  gap: 0.4rem;
+  max-width: 78ch;
+}
+
+.roleHighlights li {
+  position: relative;
+  padding-left: 1.05rem;
+  color: var(--text-dim);
+  font-size: var(--step--1);
+  line-height: 1.6;
+}
+
+.roleHighlights li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  top: 0.28em;
+  color: var(--accent-soft);
+  font-size: 0.72em;
+}
+
+.roleTech {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+}
+
+.skillsGrid {
+  display: grid;
+  gap: clamp(0.9rem, 2.4vw, 1.3rem);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 760px) {
+  .skillsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.skillGroup {
+  font-size: var(--step--1);
+  font-weight: 570;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.skillItems {
+  color: var(--text-dim);
+  font-size: var(--step--1);
+  line-height: 1.6;
+}
+
+.recognitions {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.recognitions li {
+  color: var(--text-dim);
+  font-size: var(--step--1);
+}
+
+/* ── Print: a clean light document ───────────────────────────────────────── */
+
+@media print {
+  .main {
+    padding: 0;
+  }
+
+  .eyebrow {
+    display: none;
+  }
+
+  .shell {
+    max-width: none;
+    padding: 0;
+  }
+
+  .paper {
+    gap: 1.1rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: #101010;
+  }
+
+  .name {
+    font-size: 2rem;
+  }
+
+  .positioning {
+    color: #2b5d8a;
+  }
+
+  .role,
+  .roleCompany,
+  .roleSummary,
+  .roleHighlights li,
+  .skillItems,
+  .recognitions li,
+  .credibility {
+    color: #222;
+  }
+
+  .contacts,
+  .contacts a,
+  .rolePeriod,
+  .roleTech,
+  .sectionTitle {
+    color: #444;
+  }
+
+  .section {
+    gap: 0.9rem;
+  }
+
+  .sectionTitle,
+  .head {
+    border-color: #bbb;
+  }
+
+  .role {
+    break-inside: avoid;
+  }
+}

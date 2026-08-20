@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from 'react';
+import { motion } from 'framer-motion';
+import { useMemo, type ElementType, type ReactNode } from 'react';
 
 type RevealProps = {
   children: ReactNode;
@@ -14,8 +15,10 @@ type RevealProps = {
 };
 
 /**
- * Lightweight scroll reveal built on IntersectionObserver.
- * No animation library; respects prefers-reduced-motion via CSS.
+ * Section reveal driven by framer-motion: elements enter once, when they
+ * scroll into view. Props are stable with the previous IntersectionObserver
+ * implementation, so existing call sites work unchanged. Reduced-motion users
+ * get the content without travel (opacity-only) through MotionConfig.
  */
 export default function Reveal({
   children,
@@ -25,45 +28,27 @@ export default function Reveal({
   id,
   dataAttrs,
 }: RevealProps) {
-  const Tag = (as ?? 'div') as ElementType;
-  const ref = useRef<HTMLElement | null>(null);
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    if (typeof IntersectionObserver === 'undefined') {
-      setShown(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShown(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { rootMargin: '0px 0px -12% 0px', threshold: 0.08 },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
+  const Tag = as ?? 'div';
+  const MotionTag = useMemo(
+    () => motion.create(Tag as ElementType),
+    [Tag],
+  );
 
   return (
-    <Tag
-      ref={ref}
+    <MotionTag
       id={id}
       className={className}
       {...dataAttrs}
-      data-reveal={shown ? 'shown' : ''}
-      style={delay ? ({ '--reveal-delay': `${delay}ms` } as React.CSSProperties) : undefined}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '0px 0px -12% 0px' }}
+      transition={{
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1],
+        delay: delay / 1000,
+      }}
     >
       {children}
-    </Tag>
+    </MotionTag>
   );
 }

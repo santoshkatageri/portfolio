@@ -1,0 +1,37 @@
+.grid {
+  display: grid;
+  gap: clamp(1rem, 2.2vw, 1.5rem);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 860px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Featured projects span the full row; an odd trailing card does too */
+  .grid > :global(article):first-child {
+    grid-column: 1 / -1;
+  }
+
+  .grid > :global(article):last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+.footerNote {
+  margin-top: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.footerNote p {
+  max-width: 72ch;
+  font-size: var(--step--1);
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.footerLink {
+  color: var(--accent-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
